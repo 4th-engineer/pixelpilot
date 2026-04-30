@@ -3,7 +3,7 @@
 ## History
 | Date | Changes Made | Impact |
 |------|--------------|--------|
-| 2026-04-30 15:30 | Fix HiDPI canvas scaling on window resize | Crisp rendering on Retina/HiDPI displays |
+| 2026-04-30 18:30 | Fix canvas clear on HiDPI — use logical CSS px instead of physical px | Correct canvas clearing on Retina/HiDPI displays |
 | 2026-04-30 17:30 | Fix name tag width measurement in character.js | Accurate name tag background sizing |
 | 2026-04-30 16:30 | Cap deltaTime to 100ms max in game loop | Prevents character teleportation when tab is backgrounded/resumed |
 
