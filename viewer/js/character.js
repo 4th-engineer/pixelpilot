@@ -66,6 +66,9 @@ export class Character {
       this.animFrame = (this.animFrame + 1) % 4;
     }
     
+    // Idle breathing
+    this.idleTimer = (this.idleTimer || 0) + deltaTime;
+    
     // Movement
     if (this.state === 'walking') {
       const dx = this.targetX - this.x;
@@ -107,10 +110,13 @@ export class Character {
     ctx.ellipse(x + s/2, y + s - 2, s/3, s/6, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Walking bobbing
+    // Breathing/walking bobbing
     let bobY = 0;
     if (this.state === 'walking') {
       bobY = Math.sin(this.animFrame * Math.PI / 2) * 2;
+    } else if (this.state === 'idle' && this.idleTimer) {
+      // Subtle idle breathing (1px up/down at 0.5 Hz)
+      bobY = Math.sin(this.idleTimer * Math.PI) * 1;
     }
     
     // Draw pixel character
