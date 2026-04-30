@@ -46,6 +46,15 @@ class Viewer {
     document.getElementById('clear-btn').onclick = () => this.clearHistory();
     document.getElementById('chat-clear').onclick = () => this.clearChat();
     
+    // Chat panel toggle (mobile)
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatPanel = document.getElementById('chat-panel');
+    if (chatToggle && chatPanel) {
+      chatToggle.onclick = () => {
+        chatPanel.classList.toggle('open');
+      };
+    }
+    
     // FPS and uptime display
     this.engine.onTick = () => {
       document.getElementById('fps').textContent = `FPS: ${this.engine.fps}`;

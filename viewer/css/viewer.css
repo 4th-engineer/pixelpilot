@@ -168,6 +168,29 @@ body {
   border-left: 2px solid var(--accent);
   display: flex;
   flex-direction: column;
+  transition: margin-right 0.3s ease;
+}
+
+/* Mobile: hide chat panel by default */
+@media (max-width: 768px) {
+  #chat-panel {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+    width: 280px;
+    z-index: 100;
+    margin-right: -320px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+  }
+  
+  #chat-panel.open {
+    margin-right: 0;
+  }
+  
+  #chat-toggle {
+    display: flex;
+  }
 }
 
 #chat-header {
@@ -250,6 +273,21 @@ body {
   border-top: 1px solid var(--accent);
   font-size: 11px;
   color: var(--text-dim);
+}
+
+#chat-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--text-dim);
+  color: var(--text);
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#chat-toggle:hover {
+  background: var(--highlight);
+  border-color: var(--highlight);
 }
 
 /* Scrollbar */
