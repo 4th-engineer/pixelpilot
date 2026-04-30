@@ -37,6 +37,13 @@ export class BubbleManager {
       const bubble = this.bubbles[i];
       bubble.age += deltaTime;
       
+      // Update position each frame so bubbles track their characters
+      const char = window.viewer?.characterManager?.characters?.get(bubble.agentId);
+      if (char) {
+        bubble.x = char.x + 16;
+        bubble.y = char.y - 30;
+      }
+      
       // Fade out near end of life
       if (bubble.age > bubble.life - 1) {
         bubble.alpha = Math.max(0, 1 - (bubble.age - (bubble.life - 1)));
@@ -56,14 +63,7 @@ export class BubbleManager {
   }
   
   renderBubble(ctx, bubble) {
-    // Position bubble above character
-    const char = window.viewer?.characterManager?.characters?.get(bubble.agentId);
-    if (char) {
-      bubble.x = char.x + 16;
-      bubble.y = char.y - 30;
-    }
-    
-    if (bubble.x === 0) return; // Not positioned yet
+    if (bubble.x === 0 && bubble.y === 0) return; // Not positioned yet (should not happen now)
     
     ctx.save();
     ctx.globalAlpha = bubble.alpha;
