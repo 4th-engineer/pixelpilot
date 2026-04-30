@@ -206,12 +206,43 @@ body {
   color: var(--highlight);
 }
 
+.chat-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#chat-close,
 #chat-clear {
   background: transparent;
   border: none;
   color: var(--text-dim);
   cursor: pointer;
   font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+#chat-close:hover,
+#chat-clear:hover {
+  color: var(--highlight);
+  background: rgba(255,255,255,0.1);
+}
+
+/* Show close button only on mobile */
+@media (max-width: 768px) {
+  #chat-close {
+    display: block;
+  }
+  #chat-clear {
+    display: none; /* clear button shown via toggle on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  #chat-close {
+    display: none;
+  }
 }
 
 #chat-clear:hover {

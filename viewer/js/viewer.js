@@ -49,9 +49,15 @@ class Viewer {
     // Chat panel toggle (mobile)
     const chatToggle = document.getElementById('chat-toggle');
     const chatPanel = document.getElementById('chat-panel');
+    const chatClose = document.getElementById('chat-close');
     if (chatToggle && chatPanel) {
       chatToggle.onclick = () => {
         chatPanel.classList.toggle('open');
+      };
+    }
+    if (chatClose && chatPanel) {
+      chatClose.onclick = () => {
+        chatPanel.classList.remove('open');
       };
     }
     
