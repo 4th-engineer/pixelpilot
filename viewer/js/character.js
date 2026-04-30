@@ -153,11 +153,11 @@ export class Character {
     }
     
     // Name tag
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.font = '9px monospace';
     const nameWidth = ctx.measureText(this.name).width;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(x - 2, y - 14, nameWidth + 8, 12);
     ctx.fillStyle = '#fff';
-    ctx.font = '9px monospace';
     ctx.fillText(this.name, x + 2, y - 4);
   }
 }

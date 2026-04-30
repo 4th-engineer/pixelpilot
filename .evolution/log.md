@@ -4,11 +4,13 @@
 | Date | Changes Made | Impact |
 |------|--------------|--------|
 | 2026-04-30 15:30 | Fix HiDPI canvas scaling on window resize | Crisp rendering on Retina/HiDPI displays |
+| 2026-04-30 17:30 | Fix name tag width measurement in character.js | Accurate name tag background sizing |
 | 2026-04-30 16:30 | Cap deltaTime to 100ms max in game loop | Prevents character teleportation when tab is backgrounded/resumed |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
 - Server running at port 7777
+- Recent fixes: HiDPI scaling, deltaTime cap, name tag measurement
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
