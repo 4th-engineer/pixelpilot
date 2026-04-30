@@ -60,7 +60,8 @@ export class Engine {
     const elapsed = now - this.lastTime;
     
     if (elapsed >= this.FRAME_TIME) {
-      this.deltaTime = elapsed / 1000;
+      // Cap deltaTime to prevent physics glitches when tab is backgrounded
+      this.deltaTime = Math.min(elapsed / 1000, 0.1);
       this.lastTime = now - (elapsed % this.FRAME_TIME);
       
       // FPS counter
