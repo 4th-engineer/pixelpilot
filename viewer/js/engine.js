@@ -20,31 +20,27 @@ export class Engine {
   init() {
     // Setup canvas
     this.ctx = this.canvas.getContext('2d');
-    this.resize();
     
-    // Handle resize
+    // Handle HiDPI displays and resize
     window.addEventListener('resize', () => this.resize());
-    
-    // Handle HiDPI displays
-    this.setupHiDPI();
+    this.resize();
   }
   
   resize() {
     const container = document.getElementById('canvas-container');
-    this.canvas.width = container.clientWidth;
-    this.canvas.height = container.clientHeight;
-  }
-  
-  setupHiDPI() {
     const dpr = window.devicePixelRatio || 1;
-    const rect = this.canvas.getBoundingClientRect();
     
-    this.canvas.width = rect.width * dpr;
-    this.canvas.height = rect.height * dpr;
+    // Set canvas to physical pixels for HiDPI
+    this.canvas.width = container.clientWidth * dpr;
+    this.canvas.height = container.clientHeight * dpr;
     
+    // Scale context so 1 CSS pixel = 1 unit
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(dpr, dpr);
-    this.canvas.style.width = rect.width + 'px';
-    this.canvas.style.height = rect.height + 'px';
+    
+    // CSS size = logical pixels
+    this.canvas.style.width = container.clientWidth + 'px';
+    this.canvas.style.height = container.clientHeight + 'px';
   }
   
   start() {
