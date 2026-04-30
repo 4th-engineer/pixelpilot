@@ -5,7 +5,7 @@
 |------|---------|--------------|--------|
 | 2026-04-30 20:30 | pixelpilot | Add collapsible chat panel with toggle button for mobile (<768px) — chat panel hidden by default on mobile, slides in with 💬 button | Responsive/mobile UI support |
 | 2026-05-01 00:30 | pixelpilot | Refresh server-info in status bar every 5 seconds via setInterval in viewer.js — previously only fetched once at init, now shows live client/event counts | Live server status in UI |
-| 2026-05-01 03:30 | pixelpilot | Add pixel-art style custom scrollbar for chat panel — webkit scrollbar with accent color, matching the dark pixel theme | UI polish / aesthetic consistency |
+| 2026-05-01 04:30 | pixelpilot | Add SSE keep-alive ping every 30s — server sends `ping` events to all SSE clients to detect dead connections and clean them up faster | Improved WebSocket reliability |
 | 2026-04-30 19:30 | pixelpilot | renderer.js: render() and drawFloor() now use logical CSS pixel dimensions from engine.js instead of physical canvas pixels — fixes floor grid sizing on HiDPI/Retina displays | Consistent HiDPI rendering pipeline |
 | 2026-04-30 18:30 | pixelpilot | Fix canvas clear on HiDPI — use logical CSS px instead of physical px | Correct canvas clearing on Retina/HiDPI displays |
 | 2026-04-30 17:30 | pixelpilot | Fix name tag width measurement in character.js | Accurate name tag background sizing |
@@ -14,11 +14,11 @@
 ## Current Stage
 - Phase 1 complete: Core visualization platform
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
-1. Mobile/responsive UI
-2. HiDPI/Retina display support
-3. Character animation smoothness
-4. WebSocket reliability
+1. UI polish and visual consistency
+2. Character animation smoothness
+3. WebSocket/SSE reliability ✓ (keep-alive pings added)
+4. Performance optimization
