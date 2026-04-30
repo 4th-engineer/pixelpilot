@@ -255,6 +255,25 @@ body {
   padding: 8px;
 }
 
+/* Pixel-art style scrollbar */
+#chat-messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+  border-left: 1px solid var(--accent);
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 2px solid var(--bg-panel);
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight);
+}
+
 .chat-message {
   padding: 8px;
   margin-bottom: 8px;
