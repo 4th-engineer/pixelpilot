@@ -221,10 +221,10 @@ class Viewer {
   }
   
   // Render frame
-  render(ctx) {
-    // Clear
+  render(ctx, width, height) {
+    // Clear using logical CSS pixel dimensions (not physical pixels)
     ctx.fillStyle = '#1a1a2e';
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillRect(0, 0, width, height);
     
     // Draw map (floor, walls, furniture)
     this.map.render(ctx);

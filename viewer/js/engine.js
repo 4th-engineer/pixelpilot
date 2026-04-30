@@ -13,6 +13,8 @@ export class Engine {
     this.TARGET_FPS = 30;
     this.FRAME_TIME = 1000 / this.TARGET_FPS;
     this.onTick = null;
+    this.width = 0;   // Logical CSS pixel dimensions
+    this.height = 0;
     
     this.init();
   }
@@ -30,17 +32,21 @@ export class Engine {
     const container = document.getElementById('canvas-container');
     const dpr = window.devicePixelRatio || 1;
     
+    // Store logical dimensions before HiDPI scaling
+    this.width = container.clientWidth;
+    this.height = container.clientHeight;
+    
     // Set canvas to physical pixels for HiDPI
-    this.canvas.width = container.clientWidth * dpr;
-    this.canvas.height = container.clientHeight * dpr;
+    this.canvas.width = this.width * dpr;
+    this.canvas.height = this.height * dpr;
     
     // Scale context so 1 CSS pixel = 1 unit
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(dpr, dpr);
     
     // CSS size = logical pixels
-    this.canvas.style.width = container.clientWidth + 'px';
-    this.canvas.style.height = container.clientHeight + 'px';
+    this.canvas.style.width = this.width + 'px';
+    this.canvas.style.height = this.height + 'px';
   }
   
   start() {
@@ -95,7 +101,8 @@ export class Engine {
   
   render() {
     if (this.viewer.renderer) {
-      this.viewer.render(this.ctx);
+      // Use logical CSS pixel dimensions (not physical pixel dimensions)
+      this.viewer.render(this.ctx, this.width, this.height);
     }
   }
 }
