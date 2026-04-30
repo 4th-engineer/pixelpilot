@@ -1,0 +1,17 @@
+{
+  "name": "pixel-agent-viewer",
+  "version": "0.1.0",
+  "description": "Pixel art visualization for AI coding agents",
+  "type": "module",
+  "scripts": {
+    "start": "bun run server/server.js",
+    "dev": "bun run --watch server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.0"
+  }
+}

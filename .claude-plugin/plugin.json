@@ -1,0 +1,6 @@
+{
+  "name": "pixel-agent-viewer",
+  "description": "Watch AI coding agents work in a pixel art office - real-time visualization with characters, tool calls, and activity bubbles",
+  "version": "0.1.0",
+  "skills": "./skills/"
+}

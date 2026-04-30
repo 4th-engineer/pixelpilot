@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Agent Viewer</title>
+  <link rel="stylesheet" href="css/viewer.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Status Bar -->
+    <header id="status-bar">
+      <span id="title">🦫 Pixel Agent Viewer</span>
+      <span id="connection-status">⚫ Disconnected</span>
+      <span id="agent-count">Agents: 0</span>
+      <span id="event-count">Events: 0</span>
+      <button id="clear-btn" title="Clear history">🗑️</button>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main">
+      <!-- Canvas Container -->
+      <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+        
+        <!-- Bubble Container -->
+        <div id="bubble-container"></div>
+      </div>
+      
+      <!-- Chat Panel -->
+      <aside id="chat-panel">
+        <header id="chat-header">
+          <h3>Activity Log</h3>
+          <button id="chat-clear">✕</button>
+        </header>
+        <div id="chat-messages"></div>
+      </aside>
+    </main>
+    
+    <!-- Control Bar -->
+    <footer id="control-bar">
+      <span id="fps">FPS: 0</span>
+      <span id="uptime">Uptime: 0s</span>
+      <span id="server-info">Server: --</span>
+    </footer>
+  </div>
+  
+  <script type="module" src="js/viewer.js"></script>
+</body>
+</html>

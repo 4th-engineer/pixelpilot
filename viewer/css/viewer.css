@@ -1,0 +1,271 @@
+/* Pixel Agent Viewer - CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #1a1a2e;
+  --bg-panel: #16213e;
+  --accent: #0f3460;
+  --highlight: #e94560;
+  --text: #eaeaea;
+  --text-dim: #888;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #ef4444;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--bg-dark);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Status Bar */
+#status-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 16px;
+  background: var(--bg-panel);
+  border-bottom: 2px solid var(--accent);
+  font-size: 13px;
+}
+
+#title {
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+#connection-status {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+#connection-status.connected {
+  background: var(--success);
+  color: var(--bg-dark);
+}
+
+#connection-status.disconnected {
+  background: var(--error);
+  color: white;
+}
+
+#clear-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--text-dim);
+  color: var(--text);
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#clear-btn:hover {
+  background: var(--highlight);
+  border-color: var(--highlight);
+}
+
+/* Main Content */
+#main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Canvas Container */
+#canvas-container {
+  flex: 1;
+  position: relative;
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+
+#canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Speech Bubbles */
+#bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  padding: 8px 12px;
+  background: white;
+  color: var(--bg-dark);
+  border-radius: 8px;
+  font-size: 12px;
+  max-width: 200px;
+  word-wrap: break-word;
+  animation: bubbleIn 0.3s ease-out;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  border: 8px solid transparent;
+  border-top-color: white;
+  border-bottom: 0;
+}
+
+.bubble.thinking {
+  background: #fef3c7;
+}
+
+.bubble.tool {
+  background: #dbeafe;
+}
+
+.bubble.done {
+  background: #d1fae5;
+}
+
+@keyframes bubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chat Panel */
+#chat-panel {
+  width: 320px;
+  background: var(--bg-panel);
+  border-left: 2px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--accent);
+}
+
+#chat-header h3 {
+  font-size: 14px;
+  color: var(--highlight);
+}
+
+#chat-clear {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#chat-clear:hover {
+  color: var(--highlight);
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.chat-message {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.chat-message.request {
+  background: var(--accent);
+  border-left: 3px solid var(--highlight);
+}
+
+.chat-message.thinking {
+  background: #3d3d5c;
+  font-style: italic;
+  color: #aaa;
+}
+
+.chat-message.tool {
+  background: #1e3a5f;
+  border-left: 3px solid #60a5fa;
+}
+
+.chat-message.done {
+  background: #1a3d2e;
+  border-left: 3px solid var(--success);
+}
+
+.chat-message.agent {
+  background: #3d2d4a;
+  border-left: 3px solid #a78bfa;
+}
+
+.chat-message .meta {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* Control Bar */
+#control-bar {
+  display: flex;
+  gap: 20px;
+  padding: 6px 16px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--accent);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight);
+}
