@@ -57,6 +57,18 @@ function broadcast(event) {
   }
 }
 
+// Keep-alive ping to detect dead SSE connections
+setInterval(() => {
+  const ping = `data: ${JSON.stringify({ type: 'ping', timestamp: Date.now() })}\n\n`;
+  for (const client of clients) {
+    try {
+      client.write(ping);
+    } catch (e) {
+      clients.delete(client);
+    }
+  }
+}, 30000);
+
 // Send initial history to new client
 function sendHistory(client) {
   for (const event of eventHistory.slice(-100)) {

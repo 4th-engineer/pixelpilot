@@ -170,12 +170,16 @@ class Viewer {
     
     // Handle different event types
     switch (event.type) {
+      case 'ping':
+        // Keep-alive, no action needed
+        return;
+
       case 'request':
         this.addChatMessage('request', event.message, agentId);
         this.characterManager.setAgentStatus(agentId, 'thinking');
         if (animate) this.bubbleManager.addBubble(agentId, event.message, 'thinking');
         break;
-        
+
       case 'thinking':
         this.addChatMessage('thinking', event.message, agentId);
         this.characterManager.setAgentStatus(agentId, 'thinking');
