@@ -5,15 +5,16 @@ export class Renderer {
     this.TILE_SIZE = 32;
   }
   
-  render(ctx) {
+  render(ctx, width, height) {
     const { canvas, map, characterManager, bubbleManager } = this.viewer;
-    
-    // Clear with background
+
+    // Clear with background using logical CSS pixel dimensions
+    // (canvas.width/height are physical pixels; width/height are logical)
     ctx.fillStyle = '#1a1a2e';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw floor grid
-    this.drawFloor(ctx);
+    ctx.fillRect(0, 0, width, height);
+
+    // Draw floor grid using logical dimensions
+    this.drawFloor(ctx, width, height);
     
     // Draw map elements (walls, furniture)
     if (map) map.render(ctx);
@@ -28,13 +29,12 @@ export class Renderer {
     this.drawHUD(ctx);
   }
   
-  drawFloor(ctx) {
-    const { canvas } = this.viewer;
+  drawFloor(ctx, width, height) {
     ctx.fillStyle = '#252540';
-    
-    // Draw subtle grid
-    for (let x = 0; x < canvas.width; x += this.TILE_SIZE) {
-      for (let y = 0; y < canvas.height; y += this.TILE_SIZE) {
+
+    // Draw subtle grid using logical dimensions
+    for (let x = 0; x < width; x += this.TILE_SIZE) {
+      for (let y = 0; y < height; y += this.TILE_SIZE) {
         if ((x / this.TILE_SIZE + y / this.TILE_SIZE) % 2 === 0) {
           ctx.fillStyle = '#252540';
         } else {
