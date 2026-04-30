@@ -23,13 +23,14 @@ const MAX_HISTORY = 1000;
 
 // Parse agent event from various formats
 function parseEvent(data) {
-  // Beaver-bot format: { type, agent, tool, message, timestamp }
+  // Beaver-bot format: { type, agent, tool, message, timestamp, agent_type }
   // Claude Code hook format: { event_type, ... }
   // Normalize to unified format
   return {
     id: Date.now(),
     type: data.type || data.event_type || 'unknown',
-    agent: data.agent || data.agent_type || 'worker',
+    agent: data.agent || 'worker',        // agent name/id
+    agent_type: data.agent_type || null,  // agent type (beaver, claude, worker, etc.)
     tool: data.tool || null,
     message: data.message || data.text || '',
     file: data.file || null,

@@ -148,7 +148,8 @@ class Viewer {
     
     // Update agent state
     const agentId = event.agent || 'default';
-    if (!this.agents.has(agentId)) {
+    const isNewAgent = !this.agents.has(agentId);
+    if (isNewAgent) {
       this.agents.set(agentId, {
         id: agentId,
         type: event.agent_type || 'worker',
@@ -158,7 +159,7 @@ class Viewer {
         file: null,
       });
       
-      // Spawn character for new agent
+      // Spawn character for new agent (any event type can introduce an agent)
       this.characterManager.spawnCharacter(agentId, event.agent_type || 'worker');
     }
     
