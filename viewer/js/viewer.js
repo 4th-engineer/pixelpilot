@@ -61,6 +61,9 @@ class Viewer {
       const uptime = Math.floor((Date.now() - this.startTime) / 1000);
       document.getElementById('uptime').textContent = `Uptime: ${uptime}s`;
     };
+
+    // Periodically refresh server info (every 5 seconds)
+    setInterval(() => this.fetchStatus(), 5000);
   }
   
   connectSSE() {
