@@ -314,6 +314,27 @@ body {
   margin-top: 4px;
 }
 
+.chat-message .content {
+  word-break: break-word;
+}
+
+.chat-message.thinking .content {
+  color: #ccc;
+}
+
+.chat-message.tool .content {
+  color: #93c5fd;
+}
+
+.chat-message.done .content {
+  color: #86efac;
+}
+
+.chat-message.system .content {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
 /* Control Bar */
 #control-bar {
   display: flex;
