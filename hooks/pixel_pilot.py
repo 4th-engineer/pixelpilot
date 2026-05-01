@@ -27,10 +27,19 @@ import json
 import time
 import uuid
 import functools
+import logging
 from datetime import datetime
 from threading import Lock
 from urllib import request, error
 from typing import Optional, Dict, Any
+
+# Configure module-level logger
+_logger = logging.getLogger("pixel_pilot")
+_handler = logging.StreamHandler(sys.stdout)
+_handler.setFormatter(logging.Formatter("[%(levelname)s] %(message)s"))
+# Default to INFO; set to DEBUG for verbose output
+_logger.setLevel(logging.INFO)
+_logger.addHandler(_handler)
 
 # 全局状态
 _enabled = False
@@ -72,7 +81,7 @@ def connect(url: str = "http://localhost:7777", verbose: bool = True) -> None:
     _viewer_url = url.rstrip("/")
 
     if verbose:
-        print(f"[PixelPilot] Connecting to {_viewer_url}...")
+        _logger.info(f"Connecting to {_viewer_url}...")
 
     # 测试连接
     if _test_connection():
@@ -80,17 +89,17 @@ def connect(url: str = "http://localhost:7777", verbose: bool = True) -> None:
         _initialized = True
         _patch_tool_router()
         if verbose:
-            print(f"[PixelPilot] ✅ Connected! Events will be streamed automatically.")
+            _logger.info("Connected! Events will be streamed automatically.")
     else:
         if verbose:
-            print(f"[PixelPilot] ⚠️  Server not reachable, events will be queued locally.")
+            _logger.warning("Server not reachable, events will be queued locally.")
 
 
 def disconnect() -> None:
     """断开连接，停止事件追踪"""
     global _enabled
     _enabled = False
-    print("[PixelPilot] Disconnected.")
+    _logger.info("Disconnected.")
 
 
 def send(
@@ -263,9 +272,9 @@ def _patch_tool_router() -> None:
         ToolRouter._pixel_patched = True
 
         if _enabled:
-            print("[PixelPilot] 🔌 ToolRouter patched - all tool calls will be tracked")
+            _logger.info("ToolRouter patched - all tool calls will be tracked")
 
     except ImportError as e:
-        print(f"[PixelPilot] Warning: Could not patch ToolRouter: {e}")
+        _logger.warning(f"Could not patch ToolRouter: {e}")
     except Exception as e:
-        print(f"[PixelPilot] Warning: Patching failed: {e}")
+        _logger.warning(f"Patching failed: {e}")

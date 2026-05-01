@@ -28,6 +28,7 @@
 | 2026-05-02 01:30 | pixelpilot | Fix bubble text vertical positioning — add explicit `ctx.textBaseline = 'alphabetic'` in renderBubble(), since character.js thinking indicator leaves ctx.textBaseline='middle' set after rendering, causing bubble text to render with wrong baseline | Consistent text rendering across canvas state |
 | 2026-05-02 02:30 | pixelpilot | Add desk occupancy indicators — colored dots with white ring rendered on desks showing which agent sits where; each agent's character color marks their desk | Improved spatial awareness in office visualization |
 | 2026-05-02 04:30 | pixelpilot | Fix canvas state leak in drawPlant() — add ctx.save/restore and closePath() after arc leaf drawing; prevents fillStyle and path state from leaking into subsequent draws | Consistent canvas state management, plant rendering fix |
+| 2026-05-02 05:30 | pixelpilot | Show relative event timestamps in chat messages — meta line now shows "Xs ago" (e.g. "3.2s ago", "2m ago") instead of current time, making event timing visible at a glance | Improved event traceability in chat panel |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
