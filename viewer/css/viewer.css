@@ -150,6 +150,10 @@ body {
   background: #d1fae5;
 }
 
+.bubble.tool_done {
+  background: #d1fae5;
+}
+
 @keyframes bubbleIn {
   from {
     opacity: 0;
