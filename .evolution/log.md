@@ -22,11 +22,12 @@
 | 2026-05-01 15:30 | pixelpilot | Fix idleTimer initialization in Character constructor — was lazily initialized only when accessed, now explicitly initialized to 0 for clean code and consistent behavior | Clean code, consistent idle animation init |
 | 2026-05-01 16:30 | pixelpilot | Fix thinking indicator text positioning — vertically centered in white circle using textBaseline='middle', plus bold font for visibility | Visual polish, character rendering |
 | 2026-05-01 17:30 | pixelpilot | Remove duplicate Viewer.render() (was exact copy of Renderer.render()); remove redundant Renderer.drawFloor() call — Map.render() already draws floor grid so drawFloor's checkerboard was running on top and obscuring furniture/walls | Render pipeline cleanup, bug fix |
+| 2026-05-01 18:30 | pixelpilot | Keep bubble alive while agent is still working — bubbles no longer disappear 3s after tool call starts; now they persist until agent finishes working | Improved bubble/character visual sync |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
