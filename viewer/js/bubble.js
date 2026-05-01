@@ -42,16 +42,24 @@ export class BubbleManager {
       if (char) {
         bubble.x = char.x + 16;
         bubble.y = char.y - 30;
+        
+        // Keep bubble alive while agent is still working
+        if (char.isWorking && bubble.age >= bubble.life) {
+          bubble.age = bubble.life - 0.1; // pause near end of life
+        }
       }
       
-      // Fade out near end of life
+      // Fade out near end of life (only when not working)
       if (bubble.age > bubble.life - 1) {
         bubble.alpha = Math.max(0, 1 - (bubble.age - (bubble.life - 1)));
       }
       
-      // Remove expired bubbles
+      // Remove expired bubbles (only when not working)
       if (bubble.age >= bubble.life) {
-        this.bubbles.splice(i, 1);
+        const stillWorking = char?.isWorking;
+        if (!stillWorking) {
+          this.bubbles.splice(i, 1);
+        }
       }
     }
   }

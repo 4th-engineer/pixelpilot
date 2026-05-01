@@ -21,6 +21,7 @@
 | 2026-05-01 13:30 | pixelpilot | Fix spawn point names in map.js — had accidental leading space (' entrance' → 'entrance'), name field was unused so no functional impact | Clean data |
 | 2026-05-01 15:30 | pixelpilot | Fix idleTimer initialization in Character constructor — was lazily initialized only when accessed, now explicitly initialized to 0 for clean code and consistent behavior | Clean code, consistent idle animation init |
 | 2026-05-01 16:30 | pixelpilot | Fix thinking indicator text positioning — vertically centered in white circle using textBaseline='middle', plus bold font for visibility | Visual polish, character rendering |
+| 2026-05-01 17:30 | pixelpilot | Remove duplicate Viewer.render() (was exact copy of Renderer.render()); remove redundant Renderer.drawFloor() call — Map.render() already draws floor grid so drawFloor's checkerboard was running on top and obscuring furniture/walls | Render pipeline cleanup, bug fix |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
