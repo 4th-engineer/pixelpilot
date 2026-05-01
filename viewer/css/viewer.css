@@ -318,12 +318,21 @@ body {
   margin-top: 4px;
 }
 
+.chat-message.request .content {
+  color: #f9a8d4;
+}
+
 .chat-message .content {
   word-break: break-word;
 }
 
 .chat-message.thinking .content {
   color: #ccc;
+}
+
+.chat-message.request {
+  background: #2d1f3d;
+  border-left: 3px solid var(--highlight);
 }
 
 .chat-message.tool .content {
