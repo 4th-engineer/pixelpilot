@@ -22,6 +22,7 @@ export class Character {
     
     // Desk assignment
     this.desk = null;
+    this.spawnPoint = null;
     
     // Work state
     this.isWorking = false;
@@ -44,10 +45,16 @@ export class Character {
   
   goToDesk() {
     if (!this.desk || this.desk.isBreak) return;
-    
+
     this.targetX = (this.desk.x + 0.5) * this.TILE_SIZE;
     this.targetY = (this.desk.y + 0.5) * this.TILE_SIZE;
     this.state = 'walking';
+
+    // Release spawn point now that we're walking to desk
+    if (this.spawnPoint) {
+      this.spawnPoint.occupied = null;
+      this.spawnPoint = null;
+    }
   }
   
   goToBreakRoom() {
@@ -207,6 +214,7 @@ export class CharacterManager {
     
     // Get spawn position
     const spawn = this.map.getSpawnPoint();
+    spawn.occupied = true;
     
     // Create character
     const char = new Character({
@@ -217,6 +225,7 @@ export class CharacterManager {
       x: spawn.x * this.map.TILE_SIZE,
       y: spawn.y * this.map.TILE_SIZE,
       type: agentType,
+      spawnPoint: spawn,
     });
     
     // Find a desk for this character
@@ -266,10 +275,14 @@ export class CharacterManager {
   }
   
   clear() {
-    // Release all desks
+    // Release all desks and spawn points
     for (const char of this.characters.values()) {
       if (char.desk && char.desk.map) {
         char.desk.map.releaseDesk(char.desk);
+      }
+      if (char.spawnPoint) {
+        char.spawnPoint.occupied = null;
+        char.spawnPoint = null;
       }
     }
     this.characters.clear();
