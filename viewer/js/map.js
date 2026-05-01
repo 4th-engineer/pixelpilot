@@ -36,9 +36,9 @@ export class Map {
     
     // Spawn positions (where agents enter)
     this.spawnPoints = [
-      { x: 5, y: 13, name: ' entrance' },
-      { x: 13, y: 13, name: ' entrance' },
-      { x: 21, y: 13, name: ' entrance' },
+      { x: 5, y: 13, name: 'entrance' },
+      { x: 13, y: 13, name: 'entrance' },
+      { x: 21, y: 13, name: 'entrance' },
     ];
     
     // Desk positions (where agents work)
