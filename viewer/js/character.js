@@ -169,7 +169,8 @@ export class Character {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('?', x + s - 8, y - 4);
-      ctx.restore(); // restore context state
+      // restore font along with other context state
+      ctx.restore();
     }
     
     // Name tag
