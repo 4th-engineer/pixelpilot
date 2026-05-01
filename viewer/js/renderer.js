@@ -13,10 +13,7 @@ export class Renderer {
     ctx.fillStyle = '#1a1a2e';
     ctx.fillRect(0, 0, width, height);
 
-    // Draw floor grid using logical dimensions
-    this.drawFloor(ctx, width, height);
-    
-    // Draw map elements (walls, furniture)
+    // Draw map elements (walls, furniture, floor) — Map.render() draws the floor grid
     if (map) map.render(ctx);
     
     // Draw characters

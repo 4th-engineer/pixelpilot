@@ -20,6 +20,7 @@
 | 2026-05-01 12:30 | pixelpilot | Smart chat auto-scroll — only scroll to bottom if user is within 50px of bottom; stops invasive jumps when reviewing history | Improved UX when reviewing chat history |
 | 2026-05-01 13:30 | pixelpilot | Fix spawn point names in map.js — had accidental leading space (' entrance' → 'entrance'), name field was unused so no functional impact | Clean data |
 | 2026-05-01 15:30 | pixelpilot | Fix idleTimer initialization in Character constructor — was lazily initialized only when accessed, now explicitly initialized to 0 for clean code and consistent behavior | Clean code, consistent idle animation init |
+| 2026-05-01 16:30 | pixelpilot | Fix thinking indicator text positioning — vertically centered in white circle using textBaseline='middle', plus bold font for visibility | Visual polish, character rendering |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform

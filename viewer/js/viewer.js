@@ -253,21 +253,6 @@ class Viewer {
     document.getElementById('event-count').textContent = `Events: ${this.eventCount}`;
   }
   
-  // Render frame
-  render(ctx, width, height) {
-    // Clear using logical CSS pixel dimensions (not physical pixels)
-    ctx.fillStyle = '#1a1a2e';
-    ctx.fillRect(0, 0, width, height);
-    
-    // Draw map (floor, walls, furniture)
-    this.map.render(ctx);
-    
-    // Draw characters
-    this.characterManager.render(ctx);
-    
-    // Draw bubbles
-    this.bubbleManager.render(ctx);
-  }
 }
 
 // Initialize viewer when DOM is ready
