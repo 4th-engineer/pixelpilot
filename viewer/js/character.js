@@ -152,15 +152,17 @@ export class Character {
     
     // Thinking indicator
     if (this.state === 'thinking') {
+      ctx.save();
       ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
       ctx.beginPath();
       ctx.arc(x + s - 8, y - 4, 8, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#1a1a2e';
       ctx.font = 'bold 10px monospace';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('?', x + s - 11, y - 4);
-      ctx.textBaseline = 'alphabetic'; // restore default
+      ctx.fillText('?', x + s - 8, y - 4);
+      ctx.restore(); // restore context state
     }
     
     // Name tag
