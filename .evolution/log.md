@@ -25,6 +25,7 @@
 | 2026-05-01 18:30 | pixelpilot | Keep bubble alive while agent is still working — bubbles no longer disappear 3s after tool call starts; now they persist until agent finishes working | Improved bubble/character visual sync |
 | 2026-05-01 19:30 | pixelpilot | Fix canvas context state leak in thinking indicator — use ctx.save/restore instead of manual textBaseline restore; also correct ? position to be centered in the circle (x+7→x+8) | Fixes name tag rendering corruption for characters drawn after thinking character |
 | 2026-05-01 20:30 | pixelpilot | Fix spawn point collision — spawnPoints.occupied was never set when used, causing potential spawn collisions for simultaneous agent spawns; now marks occupied on spawn and releases when agent walks to desk | Fixes potential character collision bug |
+| 2026-05-02 01:30 | pixelpilot | Fix bubble text vertical positioning — add explicit `ctx.textBaseline = 'alphabetic'` in renderBubble(), since character.js thinking indicator leaves ctx.textBaseline='middle' set after rendering, causing bubble text to render with wrong baseline | Consistent text rendering across canvas state |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
