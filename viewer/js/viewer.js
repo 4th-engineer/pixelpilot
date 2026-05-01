@@ -184,19 +184,19 @@ class Viewer {
         return;
 
       case 'request':
-        this.addChatMessage('request', event.message, agentId);
+        this.addChatMessage('request', event.message, agentId, event.timestamp);
         this.characterManager.setAgentStatus(agentId, 'thinking');
         if (animate) this.bubbleManager.addBubble(agentId, event.message, 'thinking');
         break;
 
       case 'thinking':
-        this.addChatMessage('thinking', event.message, agentId);
+        this.addChatMessage('thinking', event.message, agentId, event.timestamp);
         this.characterManager.setAgentStatus(agentId, 'thinking');
         if (animate) this.bubbleManager.addBubble(agentId, event.message, 'thinking');
         break;
         
       case 'tool':
-        this.addChatMessage('tool', `${event.tool}: ${event.message}`, agentId);
+        this.addChatMessage('tool', `${event.tool}: ${event.message}`, agentId, event.timestamp);
         this.characterManager.setAgentStatus(agentId, 'working');
         if (event.file && animate) {
           this.bubbleManager.addBubble(agentId, `${event.tool} ${event.file}`, 'tool');
@@ -205,31 +205,47 @@ class Viewer {
         
       case 'tool_done':
       case 'done':
-        this.addChatMessage('done', event.message || 'Task completed', agentId);
+        this.addChatMessage('done', event.message || 'Task completed', agentId, event.timestamp);
         this.characterManager.setAgentStatus(agentId, 'idle');
         if (animate) this.bubbleManager.addBubble(agentId, '✓', 'done');
         break;
         
       case 'agent':
-        this.addChatMessage('agent', event.message, agentId);
+        this.addChatMessage('agent', event.message, agentId, event.timestamp);
         this.characterManager.spawnCharacter(event.agent, event.agent_type || 'worker');
         break;
         
       case 'system':
-        this.addChatMessage('system', event.message, 'system');
+        this.addChatMessage('system', event.message, 'system', event.timestamp);
         break;
     }
     
     this.updateStats();
   }
   
-  addChatMessage(type, text, agent) {
+  addChatMessage(type, text, agent, eventTimestamp) {
     const container = document.getElementById('chat-messages');
     const div = document.createElement('div');
     div.className = `chat-message ${type}`;
+    
+    // Format event timestamp as relative "Xs ago" or absolute time
+    let timeStr = '';
+    if (eventTimestamp) {
+      const elapsed = (Date.now() - eventTimestamp) / 1000;
+      if (elapsed < 60) {
+        timeStr = `${elapsed.toFixed(1)}s ago`;
+      } else if (elapsed < 3600) {
+        timeStr = `${Math.floor(elapsed / 60)}m ago`;
+      } else {
+        timeStr = new Date(eventTimestamp).toLocaleTimeString();
+      }
+    } else {
+      timeStr = new Date().toLocaleTimeString();
+    }
+    
     div.innerHTML = `
       <div class="content">${this.escapeHtml(text)}</div>
-      <div class="meta">${agent} • ${new Date().toLocaleTimeString()}</div>
+      <div class="meta">${agent} • ${timeStr}</div>
     `;
     container.appendChild(div);
     if (this._chatAutoScroll) {
