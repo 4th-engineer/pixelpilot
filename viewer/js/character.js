@@ -174,12 +174,14 @@ export class Character {
     }
     
     // Name tag
+    ctx.save();
     ctx.font = '9px monospace';
     const nameWidth = ctx.measureText(this.name).width;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(x - 2, y - 14, nameWidth + 8, 12);
     ctx.fillStyle = '#fff';
     ctx.fillText(this.name, x + 2, y - 4);
+    ctx.restore();
   }
 }
 
