@@ -17,11 +17,12 @@
 | 2026-05-01 10:30 | pixelpilot | Remove dead `.bubble.tool_done` CSS rule (never used — bubble.js maps to `done` type) and fix duplicate incomplete `.chat-message.request` rule | Clean CSS, no functional change |
 | 2026-05-01 11:30 | pixelpilot | Remove remaining duplicate `.chat-message.request` CSS rule in viewer.css (was defined at lines 285-288 and 333-336) | Clean CSS, no functional change |
 | 2026-05-01 06:30 | pixelpilot | Fix agent_type loss during server event normalization + fix character spawn for non-agent events — server parseEvent() now preserves agent_type separately; any event type (tool, thinking, etc.) can introduce an agent so characters always get correct type | Agent type now preserved end-to-end |
+| 2026-05-01 12:30 | pixelpilot | Smart chat auto-scroll — only scroll to bottom if user is within 50px of bottom; stops invasive jumps when reviewing history | Improved UX when reviewing chat history |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
