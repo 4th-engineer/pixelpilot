@@ -146,7 +146,8 @@ body {
   background: #dbeafe;
 }
 
-.bubble.done {
+.bubble.done,
+.bubble.tool_done {
   background: #d1fae5;
 }
 
@@ -316,10 +317,6 @@ body {
   font-size: 10px;
   color: var(--text-dim);
   margin-top: 4px;
-}
-
-.chat-message.request .content {
-  color: #f9a8d4;
 }
 
 .chat-message .content {
