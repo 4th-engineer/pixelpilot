@@ -110,6 +110,7 @@ export class BubbleManager {
     // Text
     ctx.fillStyle = '#1a1a2e';
     ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
     ctx.fillText(bubble.message, bubble.x, y + 14);
     
     ctx.restore();
