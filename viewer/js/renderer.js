@@ -15,6 +15,9 @@ export class Renderer {
 
     // Draw map elements (walls, furniture, floor) — Map.render() draws the floor grid
     if (map) map.render(ctx);
+
+    // Draw desk occupancy indicators (character dots on desks)
+    this.drawDeskIndicators(ctx);
     
     // Draw characters
     if (characterManager) characterManager.render(ctx);
@@ -60,6 +63,36 @@ export class Renderer {
                       agent.status === 'thinking' ? '💭' : '💤';
       ctx.fillText(`${status} ${id}`, 20, y);
       y += 18;
+    }
+  }
+
+  drawDeskIndicators(ctx) {
+    const { map, characterManager } = this.viewer;
+    if (!map || !characterManager) return;
+
+    const T = map.TILE_SIZE;
+    const chars = characterManager.characters;
+
+    for (const char of chars.values()) {
+      if (!char.desk || char.desk.isBreak) continue;
+
+      // Draw a colored dot on the desk to show which agent sits there
+      const deskPx = char.desk.x * T + T;
+      const deskPy = char.desk.y * T + T;
+
+      ctx.save();
+      ctx.fillStyle = char.color;
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      ctx.arc(deskPx, deskPy - 4, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Highlight ring
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.5;
+      ctx.stroke();
+      ctx.restore();
     }
   }
 }
