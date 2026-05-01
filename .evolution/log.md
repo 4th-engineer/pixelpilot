@@ -14,6 +14,7 @@
 | 2026-05-01 07:30 | pixelpilot | Add per-type content colors in chat panel CSS — .content now has distinct text colors per message type (thinking=grey, tool=light blue, done=light green, system=italic dim), plus word-break: break-word for long paths | Improved chat panel readability |
 | 2026-05-01 08:30 | pixelpilot | Add CSS bubble style for tool_done events (.bubble.tool_done { background: #d1fae5 }) — now bubbles match chat panel styling for tool completion events | Consistent bubble/chat visual for tool_done |
 | 2026-05-01 09:30 | pixelpilot | Add .chat-message.request CSS — purple bg (#2d1f3d), highlight border, pink content text — request events now styled consistently with other event types | Consistent request event styling |
+| 2026-05-01 10:30 | pixelpilot | Remove dead `.bubble.tool_done` CSS rule (never used — bubble.js maps to `done` type) and fix duplicate incomplete `.chat-message.request` rule | Clean CSS, no functional change |
 | 2026-05-01 06:30 | pixelpilot | Fix agent_type loss during server event normalization + fix character spawn for non-agent events — server parseEvent() now preserves agent_type separately; any event type (tool, thinking, etc.) can introduce an agent so characters always get correct type | Agent type now preserved end-to-end |
 
 ## Current Stage
