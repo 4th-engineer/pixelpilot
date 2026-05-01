@@ -150,10 +150,6 @@ body {
   background: #d1fae5;
 }
 
-.bubble.tool_done {
-  background: #d1fae5;
-}
-
 @keyframes bubbleIn {
   from {
     opacity: 0;
@@ -287,8 +283,12 @@ body {
 }
 
 .chat-message.request {
-  background: var(--accent);
+  background: #2d1f3d;
   border-left: 3px solid var(--highlight);
+}
+
+.chat-message.request .content {
+  color: #f9a8d4;
 }
 
 .chat-message.thinking {
