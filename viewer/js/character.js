@@ -26,6 +26,9 @@ export class Character {
     // Work state
     this.isWorking = false;
     this.workTimer = 0;
+
+    // Idle animation timer
+    this.idleTimer = 0;
   }
   
   setState(state) {
