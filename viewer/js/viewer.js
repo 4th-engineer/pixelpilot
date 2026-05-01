@@ -61,6 +61,14 @@ class Viewer {
       };
     }
     
+    // Auto-scroll management: only scroll if user is near bottom
+    const chatMessages = document.getElementById('chat-messages');
+    this._chatAutoScroll = true;
+    chatMessages.addEventListener('scroll', () => {
+      const { scrollTop, scrollHeight, clientHeight } = chatMessages;
+      this._chatAutoScroll = scrollHeight - scrollTop - clientHeight < 50;
+    });
+    
     // FPS and uptime display
     this.engine.onTick = () => {
       document.getElementById('fps').textContent = `FPS: ${this.engine.fps}`;
@@ -224,7 +232,9 @@ class Viewer {
       <div class="meta">${agent} • ${new Date().toLocaleTimeString()}</div>
     `;
     container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
+    if (this._chatAutoScroll) {
+      container.scrollTop = container.scrollHeight;
+    }
     
     // Limit messages
     while (container.children.length > 100) {
