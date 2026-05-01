@@ -19,7 +19,7 @@
 | 2026-05-01 06:30 | pixelpilot | Fix agent_type loss during server event normalization + fix character spawn for non-agent events — server parseEvent() now preserves agent_type separately; any event type (tool, thinking, etc.) can introduce an agent so characters always get correct type | Agent type now preserved end-to-end |
 | 2026-05-01 12:30 | pixelpilot | Smart chat auto-scroll — only scroll to bottom if user is within 50px of bottom; stops invasive jumps when reviewing history | Improved UX when reviewing chat history |
 | 2026-05-01 13:30 | pixelpilot | Fix spawn point names in map.js — had accidental leading space (' entrance' → 'entrance'), name field was unused so no functional impact | Clean data |
-| 2026-05-01 14:30 | pixelpilot | Deduplicate CSS: remove redundant `.chat-message.request .content` rule (was shadowing earlier definition) and add `.bubble.tool_done` style for consistency with `done` bubble type | Clean CSS, future-proof tool_done bubbles |
+| 2026-05-01 15:30 | pixelpilot | Fix idleTimer initialization in Character constructor — was lazily initialized only when accessed, now explicitly initialized to 0 for clean code and consistent behavior | Clean code, consistent idle animation init |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform

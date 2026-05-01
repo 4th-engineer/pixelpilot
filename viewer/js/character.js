@@ -157,8 +157,10 @@ export class Character {
       ctx.arc(x + s - 8, y - 4, 8, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#1a1a2e';
-      ctx.font = '10px monospace';
-      ctx.fillText('?', x + s - 11, y);
+      ctx.font = 'bold 10px monospace';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('?', x + s - 11, y - 4);
+      ctx.textBaseline = 'alphabetic'; // restore default
     }
     
     // Name tag
