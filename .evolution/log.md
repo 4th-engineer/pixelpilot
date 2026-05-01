@@ -27,6 +27,7 @@
 | 2026-05-01 20:30 | pixelpilot | Fix spawn point collision — spawnPoints.occupied was never set when used, causing potential spawn collisions for simultaneous agent spawns; now marks occupied on spawn and releases when agent walks to desk | Fixes potential character collision bug |
 | 2026-05-02 01:30 | pixelpilot | Fix bubble text vertical positioning — add explicit `ctx.textBaseline = 'alphabetic'` in renderBubble(), since character.js thinking indicator leaves ctx.textBaseline='middle' set after rendering, causing bubble text to render with wrong baseline | Consistent text rendering across canvas state |
 | 2026-05-02 02:30 | pixelpilot | Add desk occupancy indicators — colored dots with white ring rendered on desks showing which agent sits where; each agent's character color marks their desk | Improved spatial awareness in office visualization |
+| 2026-05-02 03:30 | pixelpilot | Fix thinking indicator ctx.font leak — ctx.save/restore now properly restores font state, preventing bold name tags on characters drawn after a thinking character | Fixes canvas context state corruption |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform

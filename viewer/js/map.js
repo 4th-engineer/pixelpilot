@@ -165,6 +165,7 @@ export class Map {
   }
   
   drawPlant(ctx, x, y) {
+    ctx.save();
     // Pot
     ctx.fillStyle = '#8b4513';
     ctx.fillRect(x + 4, y + 20, 24, 12);
@@ -177,5 +178,6 @@ export class Map {
     ctx.beginPath();
     ctx.arc(x + 12, y + 8, 8, 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
   }
 }
