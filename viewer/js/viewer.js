@@ -72,8 +72,12 @@ class Viewer {
     // FPS and uptime display
     this.engine.onTick = () => {
       document.getElementById('fps').textContent = `FPS: ${this.engine.fps}`;
-      const uptime = Math.floor((Date.now() - this.startTime) / 1000);
-      document.getElementById('uptime').textContent = `Uptime: ${uptime}s`;
+      const totalSeconds = Math.floor((Date.now() - this.startTime) / 1000);
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+      const pad = (n) => String(n).padStart(2, '0');
+      document.getElementById('uptime').textContent = `Uptime: ${pad(h)}:${pad(m)}:${pad(s)}`;
     };
 
     // Periodically refresh server info (every 5 seconds)
