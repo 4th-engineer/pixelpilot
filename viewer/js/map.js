@@ -148,15 +148,19 @@ export class Map {
     }
     
     // Draw door
+    ctx.save();
     ctx.fillStyle = '#5c8a5c';
     const doorX = 13 * T;
     const doorY = 14 * T;
     ctx.fillRect(doorX, doorY, 4 * T, T);
-    
+
     // "DOOR" text
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 10px monospace';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
     ctx.fillText('DOOR', doorX + 8, doorY + 20);
+    ctx.restore();
     
     // Plants
     this.drawPlant(ctx, 2 * T, 5 * T);
