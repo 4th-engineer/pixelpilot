@@ -136,15 +136,15 @@ export class Map {
     }
     
     // Draw desks
-    ctx.fillStyle = '#5c4033';
     for (const desk of this.desks) {
       const px = desk.x * T;
       const py = desk.y * T;
+      // Desk frame/pot (dark brown)
+      ctx.fillStyle = '#5c4033';
       ctx.fillRect(px - 4, py - 4, T * 2 + 8, T * 2 + 8);
-      // Desk surface
+      // Desk surface (wood)
       ctx.fillStyle = '#8b6914';
       ctx.fillRect(px, py, T * 2, T * 2);
-      ctx.fillStyle = '#5c4033';
     }
     
     // Draw door
