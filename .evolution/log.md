@@ -36,6 +36,7 @@
 | 2026-05-03 03:30 | pixelpilot | Make HUD agent panel width dynamic — measures longest agent ID to size the panel instead of hardcoded 200px, preventing text overflow for long agent IDs | UI polish, prevents text clipping |
 
 | 2026-05-03 05:30 | pixelpilot | Format uptime as HH:MM:SS instead of raw seconds | Improved status bar readability |
+| 2026-05-03 06:30 | pixelpilot | Fix door canvas state leak in map.js render — wrap door drawing in ctx.save/restore to prevent fillStyle/font/textAlign/textBaseline leaks to subsequent draw calls | Consistent canvas state, rendering fix |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
