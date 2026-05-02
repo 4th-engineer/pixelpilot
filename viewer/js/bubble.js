@@ -8,7 +8,7 @@ export class BubbleManager {
     const bubble = {
       id: Date.now() + Math.random(),
       agentId,
-      message: this.truncate(message, 50),
+      message: this.truncate(message, 80),
       type, // thinking, tool, done
       x: 0,
       y: 0,
