@@ -31,6 +31,7 @@
 | 2026-05-02 05:30 | pixelpilot | Show relative event timestamps in chat messages — meta line now shows "Xs ago" (e.g. "3.2s ago", "2m ago") instead of current time, making event timing visible at a glance | Improved event traceability in chat panel |
 | 2026-05-02 06:30 | pixelpilot | Replace bare print() with logging module in pixel_pilot.py — uses module-level logger 'pixel_pilot', allows callers to control verbosity, suppresses output when integrated into agents that capture stdout | Clean diagnostics, better integration |
 | 2026-05-02 07:30 | pixelpilot | Fix canvas state leak in character name tag — wrap ctx.font/fillStyle changes in ctx.save()/restore() to prevent name tag rendering from corrupting subsequent character draws | Consistent canvas state management, rendering fix |
+| 2026-05-03 00:30 | pixelpilot | Increase bubble message truncation limit from 50 to 80 chars — longer tool messages and file paths now display more fully in speech bubbles | Improved bubble readability |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
