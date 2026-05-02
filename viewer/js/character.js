@@ -113,13 +113,7 @@ export class Character {
     const x = Math.floor(this.x);
     const y = Math.floor(this.y);
     const s = this.TILE_SIZE;
-    
-    // Shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-    ctx.beginPath();
-    ctx.ellipse(x + s/2, y + s - 2, s/3, s/6, 0, 0, Math.PI * 2);
-    ctx.fill();
-    
+
     // Breathing/walking bobbing
     let bobY = 0;
     if (this.state === 'walking') {
@@ -128,22 +122,32 @@ export class Character {
       // Subtle idle breathing (1px up/down at 0.5 Hz)
       bobY = Math.sin(this.idleTimer * Math.PI) * 1;
     }
-    
-    // Draw pixel character
+
+    // Draw pixel character (isolate all character state)
+    ctx.save();
+
+    // Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+    ctx.beginPath();
+    ctx.ellipse(x + s/2, y + s - 2, s/3, s/6, 0, 0, Math.PI * 2);
+    ctx.fill();
+
     // Head
     ctx.fillStyle = '#ffd5b5';
     ctx.fillRect(x + s/4, y + 4 + bobY, s/2, s/3);
-    
+
     // Body
     ctx.fillStyle = this.color;
     ctx.fillRect(x + s/4, y + s/3 + 4 + bobY, s/2, s/3);
-    
+
     // Eyes
     ctx.fillStyle = '#1a1a2e';
     const eyeOffset = this.direction === 1 ? -2 : this.direction === 2 ? 2 : 0;
     ctx.fillRect(x + s/3 + eyeOffset, y + s/4 + 6 + bobY, 3, 3);
     ctx.fillRect(x + s/2 + eyeOffset, y + s/4 + 6 + bobY, 3, 3);
-    
+
+    ctx.restore();
+
     // Working indicator (hammer)
     if (this.state === 'working') {
       const hammerAngle = Math.sin(this.workTimer * 10) * 0.5;
@@ -156,7 +160,7 @@ export class Character {
       ctx.fillRect(-4, -2, 8, 4);
       ctx.restore();
     }
-    
+
     // Thinking indicator
     if (this.state === 'thinking') {
       ctx.save();
@@ -169,10 +173,9 @@ export class Character {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('?', x + s - 8, y - 4);
-      // restore font along with other context state
       ctx.restore();
     }
-    
+
     // Name tag
     ctx.save();
     ctx.font = '9px monospace';
