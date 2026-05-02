@@ -46,9 +46,18 @@ export class Renderer {
   }
   
   drawHUD(ctx) {
-    // Agent status in corner
+    // Agent status in corner — size box to fit content
+    const agentEntries = [...this.viewer.agents.entries()];
+    if (agentEntries.length === 0) return;
+
+    // Measure the longest agent ID text to size the panel
+    ctx.font = '11px monospace';
+    const maxTextWidth = Math.max(...agentEntries.map(([id]) => ctx.measureText(id).width));
+    const panelWidth = Math.max(140, maxTextWidth + 60);
+    const panelHeight = 30 + agentEntries.length * 20;
+
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-    ctx.fillRect(10, 10, 200, 30 + this.viewer.agents.size * 20);
+    ctx.fillRect(10, 10, panelWidth, panelHeight);
     
     ctx.fillStyle = '#e94560';
     ctx.font = 'bold 12px monospace';
