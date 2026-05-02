@@ -146,8 +146,7 @@ body {
   background: #dbeafe;
 }
 
-.bubble.done,
-.bubble.tool_done {
+.bubble.done {
   background: #d1fae5;
 }
 

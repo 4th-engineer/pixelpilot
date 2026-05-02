@@ -33,6 +33,7 @@
 | 2026-05-02 07:30 | pixelpilot | Fix canvas state leak in character name tag — wrap ctx.font/fillStyle changes in ctx.save()/restore() to prevent name tag rendering from corrupting subsequent character draws | Consistent canvas state management, rendering fix |
 | 2026-05-03 00:30 | pixelpilot | Increase bubble message truncation limit from 50 to 80 chars — longer tool messages and file paths now display more fully in speech bubbles | Improved bubble readability |
 | 2026-05-03 02:30 | pixelpilot | Fix desk frame color state leak in map.js render loop — ctx.fillStyle for desk frame was set outside loop so last desk surface color would leak to plant renders; now set per-desk inside loop | Consistent canvas state, correct desk rendering |
+| 2026-05-03 03:30 | pixelpilot | Make HUD agent panel width dynamic — measures longest agent ID to size the panel instead of hardcoded 200px, preventing text overflow for long agent IDs | UI polish, prevents text clipping |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
