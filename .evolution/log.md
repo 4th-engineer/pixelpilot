@@ -35,7 +35,7 @@
 | 2026-05-03 02:30 | pixelpilot | Fix desk frame color state leak in map.js render loop — ctx.fillStyle for desk frame was set outside loop so last desk surface color would leak to plant renders; now set per-desk inside loop | Consistent canvas state, correct desk rendering |
 | 2026-05-03 03:30 | pixelpilot | Make HUD agent panel width dynamic — measures longest agent ID to size the panel instead of hardcoded 200px, preventing text overflow for long agent IDs | UI polish, prevents text clipping |
 
-| 2026-05-03 04:30 | pixelpilot | Remove dead `.bubble.tool_done` CSS rule (bubble.js maps to 'done' type only, not 'tool_done') | Clean CSS, no functional change |
+| 2026-05-03 05:30 | pixelpilot | Format uptime as HH:MM:SS instead of raw seconds | Improved status bar readability |
 
 ## Current Stage
 - Phase 1 complete: Core visualization platform
