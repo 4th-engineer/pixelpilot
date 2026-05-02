@@ -169,11 +169,12 @@ export class Map {
     // Pot
     ctx.fillStyle = '#8b4513';
     ctx.fillRect(x + 4, y + 20, 24, 12);
-    // Leaves
+    // Main leaf
     ctx.fillStyle = '#228b22';
     ctx.beginPath();
     ctx.arc(x + 16, y + 12, 12, 0, Math.PI * 2);
     ctx.fill();
+    // Highlight leaf
     ctx.fillStyle = '#32cd32';
     ctx.beginPath();
     ctx.arc(x + 12, y + 8, 8, 0, Math.PI * 2);
