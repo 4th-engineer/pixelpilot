@@ -292,7 +292,12 @@ class Viewer {
     document.getElementById('agent-count').textContent = `Agents: ${this.agents.size}`;
     document.getElementById('event-count').textContent = `Events: ${this.eventCount}`;
   }
-  
+
+  render(ctx, width, height) {
+    if (this.renderer) {
+      this.renderer.render(ctx, width, height);
+    }
+  }
 }
 
 // Initialize viewer when DOM is ready
