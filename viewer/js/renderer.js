@@ -50,29 +50,55 @@ export class Renderer {
     const agentEntries = [...this.viewer.agents.entries()];
     if (agentEntries.length === 0) return;
 
-    // Measure the longest agent ID text to size the panel
-    ctx.font = '11px monospace';
-    const maxTextWidth = Math.max(...agentEntries.map(([id]) => ctx.measureText(id).width));
-    const panelWidth = Math.max(140, maxTextWidth + 60);
-    const panelHeight = 30 + agentEntries.length * 20;
+    // Find character info for each agent (color, name)
+    const charMap = this.viewer.characterManager?.characters;
+    const getCharInfo = (agentId) => {
+      const char = charMap?.get(agentId);
+      return char ? { color: char.color, name: char.name } : null;
+    };
 
+    // Measure the longest combined (name + id) text to size the panel
+    ctx.font = '11px monospace';
+    const maxTextWidth = Math.max(...agentEntries.map(([id]) => {
+      const info = getCharInfo(id);
+      const label = info ? `${info.name} (${id})` : id;
+      return ctx.measureText(label).width;
+    }));
+    const panelWidth = Math.max(160, maxTextWidth + 50);
+    const panelHeight = 30 + agentEntries.length * 22;
+
+    ctx.save();
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(10, 10, panelWidth, panelHeight);
-    
+
     ctx.fillStyle = '#e94560';
     ctx.font = 'bold 12px monospace';
-    ctx.fillText('Active Agents', 20, 28);
-    
-    ctx.fillStyle = '#eaeaea';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Active Agents', 20, 26);
+
     ctx.font = '11px monospace';
-    
-    let y = 48;
+    ctx.textBaseline = 'alphabetic';
+
+    let y = 50;
     for (const [id, agent] of this.viewer.agents) {
-      const status = agent.status === 'working' ? '🔨' : 
+      const status = agent.status === 'working' ? '🔨' :
                       agent.status === 'thinking' ? '💭' : '💤';
-      ctx.fillText(`${status} ${id}`, 20, y);
-      y += 18;
+      const info = getCharInfo(id);
+
+      // Color dot
+      ctx.fillStyle = info?.color || '#888';
+      ctx.beginPath();
+      ctx.arc(20, y - 4, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Agent label: name (id)
+      ctx.fillStyle = '#eaeaea';
+      const label = info ? `${info.name} (${id})` : id;
+      ctx.fillText(`${status} ${label}`, 32, y);
+      y += 22;
     }
+    ctx.restore();
   }
 
   drawDeskIndicators(ctx) {

@@ -39,6 +39,7 @@
 | 2026-05-03 06:30 | pixelpilot | Fix door canvas state leak in map.js render — wrap door drawing in ctx.save/restore to prevent fillStyle/font/textAlign/textBaseline leaks to subsequent draw calls | Consistent canvas state, rendering fix |
 
 | 2026-05-03 07:30 | pixelpilot | Isolate character rendering canvas state — wrap head/body/eyes/shadow drawing in ctx.save/restore to prevent fillStyle/globalAlpha from leaking between character renders and subsequent draw calls (working/thinking/name tag) | Consistent canvas state management, prevents rendering artifacts |
+| 2026-05-04 00:30 | pixelpilot | Add 'c' keyboard shortcut to toggle chat panel — complements existing mobile 💬 button, skips shortcut when focus is on input/textarea | Improved UX keyboard navigation |
 
 ## Current Stage
 - Server running at port 7777
