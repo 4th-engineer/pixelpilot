@@ -42,6 +42,7 @@
 | 2026-05-04 00:30 | pixelpilot | Add 'c' keyboard shortcut to toggle chat panel — complements existing mobile 💬 button, skips shortcut when focus is on input/textarea | Improved UX keyboard navigation |
 
 | 2026-05-04 01:30 | pixelpilot | HUD now shows colored dot matching character color, plus pixel character name (e.g. "Jake (beaver)") instead of just agent ID — makes it easier to match HUD entries to pixel characters | Improved HUD readability, maps HUD to visual characters |
+| 2026-05-04 02:30 | pixelpilot | Add pixel-art beaver SVG favicon via data URI — matches app theme; also add viewport-fit=cover for notched mobile browsers | Polish, browser tab identity |
 
 ## Current Stage
 - Server running at port 7777

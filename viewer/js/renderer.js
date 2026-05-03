@@ -29,22 +29,7 @@ export class Renderer {
     this.drawHUD(ctx);
   }
   
-  drawFloor(ctx, width, height) {
-    ctx.fillStyle = '#252540';
 
-    // Draw subtle grid using logical dimensions
-    for (let x = 0; x < width; x += this.TILE_SIZE) {
-      for (let y = 0; y < height; y += this.TILE_SIZE) {
-        if ((x / this.TILE_SIZE + y / this.TILE_SIZE) % 2 === 0) {
-          ctx.fillStyle = '#252540';
-        } else {
-          ctx.fillStyle = '#2a2a48';
-        }
-        ctx.fillRect(x, y, this.TILE_SIZE, this.TILE_SIZE);
-      }
-    }
-  }
-  
   drawHUD(ctx) {
     // Agent status in corner — size box to fit content
     const agentEntries = [...this.viewer.agents.entries()];

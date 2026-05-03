@@ -147,7 +147,7 @@ export class Map {
       ctx.fillRect(px, py, T * 2, T * 2);
     }
     
-    // Draw door
+    // Draw door (isolate canvas state to prevent fillStyle/font/textAlign/textBaseline leaks)
     ctx.save();
     ctx.fillStyle = '#5c8a5c';
     const doorX = 13 * T;
