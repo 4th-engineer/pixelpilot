@@ -41,6 +41,8 @@
 | 2026-05-03 07:30 | pixelpilot | Isolate character rendering canvas state — wrap head/body/eyes/shadow drawing in ctx.save/restore to prevent fillStyle/globalAlpha from leaking between character renders and subsequent draw calls (working/thinking/name tag) | Consistent canvas state management, prevents rendering artifacts |
 | 2026-05-04 00:30 | pixelpilot | Add 'c' keyboard shortcut to toggle chat panel — complements existing mobile 💬 button, skips shortcut when focus is on input/textarea | Improved UX keyboard navigation |
 
+| 2026-05-04 01:30 | pixelpilot | HUD now shows colored dot matching character color, plus pixel character name (e.g. "Jake (beaver)") instead of just agent ID — makes it easier to match HUD entries to pixel characters | Improved HUD readability, maps HUD to visual characters |
+
 ## Current Stage
 - Server running at port 7777
 - Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working
