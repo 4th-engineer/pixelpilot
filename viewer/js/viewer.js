@@ -265,10 +265,12 @@ class Viewer {
       timeStr = new Date().toLocaleTimeString();
     }
     
-    div.innerHTML = `
-      <div class="content">${this.escapeHtml(text)}</div>
-      <div class="meta">${agent} • ${timeStr}</div>
-    `;
+    div.innerHTML = `<div class="content">${this.escapeHtml(text)}</div>`;
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = `${agent} • ${timeStr}`;
+    div.appendChild(meta);
+    
     container.appendChild(div);
     if (this._chatAutoScroll) {
       container.scrollTop = container.scrollHeight;
