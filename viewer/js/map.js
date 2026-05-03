@@ -135,7 +135,8 @@ export class Map {
       }
     }
     
-    // Draw desks
+    // Draw desks (isolate canvas state to prevent fillStyle leaks)
+    ctx.save();
     for (const desk of this.desks) {
       const px = desk.x * T;
       const py = desk.y * T;
@@ -146,6 +147,7 @@ export class Map {
       ctx.fillStyle = '#8b6914';
       ctx.fillRect(px, py, T * 2, T * 2);
     }
+    ctx.restore();
     
     // Draw door (isolate canvas state to prevent fillStyle/font/textAlign/textBaseline leaks)
     ctx.save();
