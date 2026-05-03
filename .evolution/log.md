@@ -38,8 +38,9 @@
 | 2026-05-03 05:30 | pixelpilot | Format uptime as HH:MM:SS instead of raw seconds | Improved status bar readability |
 | 2026-05-03 06:30 | pixelpilot | Fix door canvas state leak in map.js render — wrap door drawing in ctx.save/restore to prevent fillStyle/font/textAlign/textBaseline leaks to subsequent draw calls | Consistent canvas state, rendering fix |
 
+| 2026-05-03 07:30 | pixelpilot | Isolate character rendering canvas state — wrap head/body/eyes/shadow drawing in ctx.save/restore to prevent fillStyle/globalAlpha from leaking between character renders and subsequent draw calls (working/thinking/name tag) | Consistent canvas state management, prevents rendering artifacts |
+
 ## Current Stage
-- Phase 1 complete: Core visualization platform
 - Server running at port 7777
 - Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working
 - Next: Continue UI polish and bug fixes

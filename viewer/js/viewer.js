@@ -46,7 +46,7 @@ class Viewer {
     document.getElementById('clear-btn').onclick = () => this.clearHistory();
     document.getElementById('chat-clear').onclick = () => this.clearChat();
     
-    // Chat panel toggle (mobile)
+    // Chat panel toggle (mobile + keyboard shortcut 'c')
     const chatToggle = document.getElementById('chat-toggle');
     const chatPanel = document.getElementById('chat-panel');
     const chatClose = document.getElementById('chat-close');
@@ -60,6 +60,14 @@ class Viewer {
         chatPanel.classList.remove('open');
       };
     }
+    
+    // Keyboard shortcut: 'c' toggles chat panel
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'c' || e.key === 'C') {
+        chatPanel.classList.toggle('open');
+      }
+    });
     
     // Auto-scroll management: only scroll if user is near bottom
     const chatMessages = document.getElementById('chat-messages');
