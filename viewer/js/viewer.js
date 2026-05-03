@@ -93,6 +93,11 @@ class Viewer {
   }
   
   connectSSE() {
+    // Guard against multiple simultaneous reconnection attempts
+    if (this._sseReconnecting) {
+      return;
+    }
+    
     const statusEl = document.getElementById('connection-status');
     statusEl.textContent = '⚫ Connecting...';
     
@@ -100,6 +105,7 @@ class Viewer {
     
     events.onopen = () => {
       this.sseConnected = true;
+      this._sseReconnecting = false;
       statusEl.textContent = '🟢 Connected';
       statusEl.className = 'connected';
     };
@@ -115,11 +121,15 @@ class Viewer {
     
     events.onerror = () => {
       this.sseConnected = false;
+      this._sseReconnecting = true;
       statusEl.textContent = '🔴 Disconnected';
       statusEl.className = 'disconnected';
       
-      // Reconnect after 3s
-      setTimeout(() => this.connectSSE(), 3000);
+      // Reconnect after 3s (guard prevents stacking multiple reconnect timers)
+      setTimeout(() => {
+        this._sseReconnecting = false;
+        this.connectSSE();
+      }, 3000);
     };
   }
   

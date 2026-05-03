@@ -34,15 +34,14 @@
 | 2026-05-03 00:30 | pixelpilot | Increase bubble message truncation limit from 50 to 80 chars — longer tool messages and file paths now display more fully in speech bubbles | Improved bubble readability |
 | 2026-05-03 02:30 | pixelpilot | Fix desk frame color state leak in map.js render loop — ctx.fillStyle for desk frame was set outside loop so last desk surface color would leak to plant renders; now set per-desk inside loop | Consistent canvas state, correct desk rendering |
 | 2026-05-03 03:30 | pixelpilot | Make HUD agent panel width dynamic — measures longest agent ID to size the panel instead of hardcoded 200px, preventing text overflow for long agent IDs | UI polish, prevents text clipping |
-
 | 2026-05-03 05:30 | pixelpilot | Format uptime as HH:MM:SS instead of raw seconds | Improved status bar readability |
 | 2026-05-03 06:30 | pixelpilot | Fix door canvas state leak in map.js render — wrap door drawing in ctx.save/restore to prevent fillStyle/font/textAlign/textBaseline leaks to subsequent draw calls | Consistent canvas state, rendering fix |
-
 | 2026-05-03 07:30 | pixelpilot | Isolate character rendering canvas state — wrap head/body/eyes/shadow drawing in ctx.save/restore to prevent fillStyle/globalAlpha from leaking between character renders and subsequent draw calls (working/thinking/name tag) | Consistent canvas state management, prevents rendering artifacts |
 | 2026-05-04 00:30 | pixelpilot | Add 'c' keyboard shortcut to toggle chat panel — complements existing mobile 💬 button, skips shortcut when focus is on input/textarea | Improved UX keyboard navigation |
 | 2026-05-04 01:30 | pixelpilot | HUD now shows colored dot matching character color, plus pixel character name (e.g. "Jake (beaver)") instead of just agent ID — makes it easier to match HUD entries to pixel characters | Improved HUD readability, maps HUD to visual characters |
 | 2026-05-04 02:30 | pixelpilot | Add pixel-art beaver SVG favicon via data URI — matches app theme; also add viewport-fit=cover for notched mobile browsers | Polish, browser tab identity |
 | 2026-05-04 03:30 | pixelpilot | Remove dead Renderer.drawFloor() method — floor grid is drawn by Map.render() so this was redundant dead code | Clean code, reduced codebase |
+| 2026-05-04 04:30 | pixelpilot | Isolate desk rendering canvas state in map.js — wrap desk drawing loop in ctx.save/restore to prevent fillStyle leaks to subsequent draw calls (door and plants already isolated, desks now consistent) | Consistent canvas state management, rendering fix |
 
 ## Current Stage
 - Server running at port 7777
