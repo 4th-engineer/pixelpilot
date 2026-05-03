@@ -44,6 +44,7 @@
 | 2026-05-04 04:30 | pixelpilot | Isolate desk rendering canvas state in map.js — wrap desk drawing loop in ctx.save/restore to prevent fillStyle leaks to subsequent draw calls (door and plants already isolated, desks now consistent) | Consistent canvas state management, rendering fix |
 | 2026-05-04 05:30 | pixelpilot | Prevent SSE reconnect timer stacking on persistent errors — add _sseReconnecting guard so rapid onerror events don't create multiple simultaneous reconnection attempts | Improved SSE reconnection reliability |
 | 2026-05-04 06:30 | pixelpilot | Fix XSS in addChatMessage — agent and timestamp were interpolated via innerHTML (unsanitized), now use textContent via createElement/appendChild | Security fix — prevents XSS from malicious agent names |
+| 2026-05-04 07:30 | pixelpilot | Add missing Viewer.render() delegate method — engine.js calls viewer.render(ctx, width, height) but Viewer class had no render method, so Renderer.render() was never invoked and canvas stayed blank | Critical rendering fix — canvas now actually displays |
 
 ## Current Stage
 - Server running at port 7777
