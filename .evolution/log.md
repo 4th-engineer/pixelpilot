@@ -42,6 +42,7 @@
 | 2026-05-04 02:30 | pixelpilot | Add pixel-art beaver SVG favicon via data URI — matches app theme; also add viewport-fit=cover for notched mobile browsers | Polish, browser tab identity |
 | 2026-05-04 03:30 | pixelpilot | Remove dead Renderer.drawFloor() method — floor grid is drawn by Map.render() so this was redundant dead code | Clean code, reduced codebase |
 | 2026-05-04 04:30 | pixelpilot | Isolate desk rendering canvas state in map.js — wrap desk drawing loop in ctx.save/restore to prevent fillStyle leaks to subsequent draw calls (door and plants already isolated, desks now consistent) | Consistent canvas state management, rendering fix |
+| 2026-05-04 05:30 | pixelpilot | Prevent SSE reconnect timer stacking on persistent errors — add _sseReconnecting guard so rapid onerror events don't create multiple simultaneous reconnection attempts | Improved SSE reconnection reliability |
 
 ## Current Stage
 - Server running at port 7777
