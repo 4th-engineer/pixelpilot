@@ -3,20 +3,20 @@
 ## History
 | Date | Project | Changes Made | Impact |
 |------|---------|--------------|--------|
+| 2026-04-30 16:30 | pixelpilot | Cap deltaTime to 100ms max in game loop | Prevents character teleportation when tab is backgrounded/resumed |
+| 2026-04-30 17:30 | pixelpilot | Fix name tag width measurement in character.js | Accurate name tag background sizing |
+| 2026-04-30 18:30 | pixelpilot | Fix canvas clear on HiDPI — use logical CSS px instead of physical px | Correct canvas clearing on Retina/HiDPI displays |
+| 2026-04-30 19:30 | pixelpilot | renderer.js: render() and drawFloor() now use logical CSS pixel dimensions from engine.js instead of physical canvas pixels — fixes floor grid sizing on HiDPI/Retina displays | Consistent HiDPI rendering pipeline |
 | 2026-04-30 20:30 | pixelpilot | Add collapsible chat panel with toggle button for mobile (<768px) — chat panel hidden by default on mobile, slides in with 💬 button | Responsive/mobile UI support |
 | 2026-05-01 00:30 | pixelpilot | Refresh server-info in status bar every 5 seconds via setInterval in viewer.js — previously only fetched once at init, now shows live client/event counts | Live server status in UI |
 | 2026-05-01 04:30 | pixelpilot | Add SSE keep-alive ping every 30s — server sends `ping` events to all SSE clients to detect dead connections and clean them up faster | Improved WebSocket reliability |
 | 2026-05-01 05:30 | pixelpilot | Move bubble position update from render() to update() — bubbles now track character position each frame instead of only on render, fixing cases where bubbles never positioned if character hadn't spawned yet | Fixed potential silent bubble rendering bug |
-| 2026-04-30 19:30 | pixelpilot | renderer.js: render() and drawFloor() now use logical CSS pixel dimensions from engine.js instead of physical canvas pixels — fixes floor grid sizing on HiDPI/Retina displays | Consistent HiDPI rendering pipeline |
-| 2026-04-30 18:30 | pixelpilot | Fix canvas clear on HiDPI — use logical CSS px instead of physical px | Correct canvas clearing on Retina/HiDPI displays |
-| 2026-04-30 17:30 | pixelpilot | Fix name tag width measurement in character.js | Accurate name tag background sizing |
-| 2026-04-30 16:30 | pixelpilot | Cap deltaTime to 100ms max in game loop | Prevents character teleportation when tab is backgrounded/resumed |
+| 2026-05-01 06:30 | pixelpilot | Fix agent_type loss during server event normalization + fix character spawn for non-agent events — server parseEvent() now preserves agent_type separately; any event type (tool, thinking, etc.) can introduce an agent so characters always get correct type | Agent type now preserved end-to-end |
 | 2026-05-01 07:30 | pixelpilot | Add per-type content colors in chat panel CSS — .content now has distinct text colors per message type (thinking=grey, tool=light blue, done=light green, system=italic dim), plus word-break: break-word for long paths | Improved chat panel readability |
 | 2026-05-01 08:30 | pixelpilot | Add CSS bubble style for tool_done events (.bubble.tool_done { background: #d1fae5 }) — now bubbles match chat panel styling for tool completion events | Consistent bubble/chat visual for tool_done |
 | 2026-05-01 09:30 | pixelpilot | Add .chat-message.request CSS — purple bg (#2d1f3d), highlight border, pink content text — request events now styled consistently with other event types | Consistent request event styling |
 | 2026-05-01 10:30 | pixelpilot | Remove dead `.bubble.tool_done` CSS rule (never used — bubble.js maps to `done` type) and fix duplicate incomplete `.chat-message.request` rule | Clean CSS, no functional change |
 | 2026-05-01 11:30 | pixelpilot | Remove remaining duplicate `.chat-message.request` CSS rule in viewer.css (was defined at lines 285-288 and 333-336) | Clean CSS, no functional change |
-| 2026-05-01 06:30 | pixelpilot | Fix agent_type loss during server event normalization + fix character spawn for non-agent events — server parseEvent() now preserves agent_type separately; any event type (tool, thinking, etc.) can introduce an agent so characters always get correct type | Agent type now preserved end-to-end |
 | 2026-05-01 12:30 | pixelpilot | Smart chat auto-scroll — only scroll to bottom if user is within 50px of bottom; stops invasive jumps when reviewing history | Improved UX when reviewing chat history |
 | 2026-05-01 13:30 | pixelpilot | Fix spawn point names in map.js — had accidental leading space (' entrance' → 'entrance'), name field was unused so no functional impact | Clean data |
 | 2026-05-01 15:30 | pixelpilot | Fix idleTimer initialization in Character constructor — was lazily initialized only when accessed, now explicitly initialized to 0 for clean code and consistent behavior | Clean code, consistent idle animation init |
@@ -45,13 +45,15 @@
 | 2026-05-04 05:30 | pixelpilot | Prevent SSE reconnect timer stacking on persistent errors — add _sseReconnecting guard so rapid onerror events don't create multiple simultaneous reconnection attempts | Improved SSE reconnection reliability |
 | 2026-05-04 06:30 | pixelpilot | Fix XSS in addChatMessage — agent and timestamp were interpolated via innerHTML (unsanitized), now use textContent via createElement/appendChild | Security fix — prevents XSS from malicious agent names |
 | 2026-05-04 07:30 | pixelpilot | Add missing Viewer.render() delegate method — engine.js calls viewer.render(ctx, width, height) but Viewer class had no render method, so Renderer.render() was never invoked and canvas stayed blank | Critical rendering fix — canvas now actually displays |
-| 2026-05-05 01:30 | pixelpilot | Add `roundRect` polyfill for bubble rendering — uses native `ctx.roundRect` when available, falls back to `arcTo`-based path for older browsers without Canvas 2021 support | Improved browser compatibility |
 | 2026-05-05 00:30 | pixelpilot | Add ambient dust particle system — 15 tiny white dust motes drift upward with gentle sine-wave sway, rendered after floor/map but before characters; adds atmospheric life to the office scene without impacting performance | Visual polish — office now feels alive |
+| 2026-05-05 01:30 | pixelpilot | Add `roundRect` polyfill for bubble rendering — uses native `ctx.roundRect` when available, falls back to `arcTo`-based path for older browsers without Canvas 2021 support | Improved browser compatibility |
 | 2026-05-05 02:30 | pixelpilot | Remove unused speedX from particle system — speedX was set in _spawn() but never used since horizontal drift comes from sine wave via phase; removes dead field and unused update line | Clean code, leaner particle objects |
+| 2026-05-05 03:30 | pixelpilot | Isolate floor/wall tile rendering in map.js — floor loop sets ctx.fillStyle/strokeStyle for walls and meeting room tiles but never restored; now wrapped in ctx.save/restore() to prevent style leaks into desk/door/plant renders | Consistent canvas state management, rendering fix |
 
 ## Current Stage
 - Server running at port 7777
 - Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility
+- Canvas state isolation now complete across all render paths (floor/walls, desks, door, plants, characters, working indicator, thinking indicator, name tag, bubbles)
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
