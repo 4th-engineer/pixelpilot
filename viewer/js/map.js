@@ -97,7 +97,8 @@ export class Map {
   render(ctx) {
     const T = this.TILE_SIZE;
     
-    // Draw floor and walls
+    // Draw floor and walls (isolate canvas state to prevent fillStyle/strokeStyle leaks)
+    ctx.save();
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
         const px = x * T;
@@ -134,8 +135,9 @@ export class Map {
         }
       }
     }
+    ctx.restore();
     
-    // Draw desks (isolate canvas state to prevent fillStyle leaks)
+    // Draw desks
     ctx.save();
     for (const desk of this.desks) {
       const px = desk.x * T;
