@@ -91,32 +91,32 @@ export class BubbleManager {
 
   renderBubble(ctx, bubble) {
     if (bubble.x === 0 && bubble.y === 0) return; // Not positioned yet (should not happen now)
-    
+
     ctx.save();
     ctx.globalAlpha = bubble.alpha;
-    
+
     // Bubble background
     const padding = 6;
     ctx.font = '11px monospace';
     const textWidth = ctx.measureText(bubble.message).width;
     const width = textWidth + padding * 2;
     const height = 20;
-    
+
     // Position
     const x = bubble.x - width / 2;
     const y = bubble.y - height;
-    
+
     // Background
     let bgColor = '#ffffff';
     if (bubble.type === 'thinking') bgColor = '#fef3c7';
     if (bubble.type === 'tool') bgColor = '#dbeafe';
     if (bubble.type === 'done') bgColor = '#d1fae5';
-    
+
     ctx.fillStyle = bgColor;
     ctx.beginPath();
     this._roundRect(ctx, x, y, width, height, 6);
     ctx.fill();
-    
+
     // Tail
     ctx.fillStyle = bgColor;
     ctx.beginPath();
@@ -125,13 +125,15 @@ export class BubbleManager {
     ctx.lineTo(bubble.x, y + height + 6);
     ctx.closePath();
     ctx.fill();
-    
-    // Text
+
+    // Text (isolate text state)
+    ctx.save();
     ctx.fillStyle = '#1a1a2e';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
     ctx.fillText(bubble.message, bubble.x, y + 14);
-    
+    ctx.restore();
+
     ctx.restore();
   }
   
