@@ -47,6 +47,7 @@
 | 2026-05-04 07:30 | pixelpilot | Add missing Viewer.render() delegate method — engine.js calls viewer.render(ctx, width, height) but Viewer class had no render method, so Renderer.render() was never invoked and canvas stayed blank | Critical rendering fix — canvas now actually displays |
 | 2026-05-05 01:30 | pixelpilot | Add `roundRect` polyfill for bubble rendering — uses native `ctx.roundRect` when available, falls back to `arcTo`-based path for older browsers without Canvas 2021 support | Improved browser compatibility |
 | 2026-05-05 00:30 | pixelpilot | Add ambient dust particle system — 15 tiny white dust motes drift upward with gentle sine-wave sway, rendered after floor/map but before characters; adds atmospheric life to the office scene without impacting performance | Visual polish — office now feels alive |
+| 2026-05-05 02:30 | pixelpilot | Remove unused speedX from particle system — speedX was set in _spawn() but never used since horizontal drift comes from sine wave via phase; removes dead field and unused update line | Clean code, leaner particle objects |
 
 ## Current Stage
 - Server running at port 7777
