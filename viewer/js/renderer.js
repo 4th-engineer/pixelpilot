@@ -16,6 +16,9 @@ export class Renderer {
     // Draw map elements (walls, furniture, floor) — Map.render() draws the floor grid
     if (map) map.render(ctx);
 
+    // Draw ambient dust particles
+    if (this.viewer.particleManager) this.viewer.particleManager.render(ctx);
+
     // Draw desk occupancy indicators (character dots on desks)
     this.drawDeskIndicators(ctx);
     

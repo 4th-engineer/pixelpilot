@@ -4,6 +4,7 @@ import { Renderer } from './renderer.js';
 import { CharacterManager } from './character.js';
 import { Map } from './map.js';
 import { BubbleManager } from './bubble.js';
+import { ParticleManager } from './particle.js';
 
 class Viewer {
   constructor() {
@@ -12,6 +13,7 @@ class Viewer {
     this.characterManager = null;
     this.map = null;
     this.bubbleManager = null;
+    this.particleManager = null;
     this.agents = new Map();
     this.eventCount = 0;
     this.startTime = Date.now();
@@ -24,6 +26,8 @@ class Viewer {
     // Initialize components
     this.map = new Map();
     this.bubbleManager = new BubbleManager();
+    this.particleManager = new ParticleManager();
+    this.particleManager.init(this.engine.width, this.engine.height);
     this.characterManager = new CharacterManager(this.map);
     this.renderer = new Renderer(this);
     
