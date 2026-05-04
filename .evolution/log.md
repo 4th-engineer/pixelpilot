@@ -49,6 +49,7 @@
 | 2026-05-05 01:30 | pixelpilot | Add `roundRect` polyfill for bubble rendering — uses native `ctx.roundRect` when available, falls back to `arcTo`-based path for older browsers without Canvas 2021 support | Improved browser compatibility |
 | 2026-05-05 02:30 | pixelpilot | Remove unused speedX from particle system — speedX was set in _spawn() but never used since horizontal drift comes from sine wave via phase; removes dead field and unused update line | Clean code, leaner particle objects |
 | 2026-05-05 03:30 | pixelpilot | Isolate floor/wall tile rendering in map.js — floor loop sets ctx.fillStyle/strokeStyle for walls and meeting room tiles but never restored; now wrapped in ctx.save/restore() to prevent style leaks into desk/door/plant renders | Consistent canvas state management, rendering fix |
+| 2026-05-05 04:30 | Isolate bubble text canvas state in renderBubble() — wrap text fillStyle/textAlign/textBaseline in ctx.save/restore to prevent bubble text state from leaking to subsequent draw calls | Consistent canvas state management |
 
 ## Current Stage
 - Server running at port 7777
