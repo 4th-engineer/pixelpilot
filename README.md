@@ -197,7 +197,8 @@ pixel-agent-viewer/
 │       ├── particle.js
 │       └── map.js
 └── hooks/
-    └── pixel_pilot.py         # Python 一行接入
+    ├── pixel_pilot.py         # Python 一行接入
+    └── README.md              # 接入指南
 ```
 
 ## 🛠️ 技术栈

@@ -50,6 +50,7 @@
 | 2026-05-05 02:30 | pixelpilot | Remove unused speedX from particle system — speedX was set in _spawn() but never used since horizontal drift comes from sine wave via phase; removes dead field and unused update line | Clean code, leaner particle objects |
 | 2026-05-05 03:30 | pixelpilot | Isolate floor/wall tile rendering in map.js — floor loop sets ctx.fillStyle/strokeStyle for walls and meeting room tiles but never restored; now wrapped in ctx.save/restore() to prevent style leaks into desk/door/plant renders | Consistent canvas state management, rendering fix |
 | 2026-05-05 04:30 | Isolate bubble text canvas state in renderBubble() — wrap text fillStyle/textAlign/textBaseline in ctx.save/restore to prevent bubble text state from leaking to subsequent draw calls | Consistent canvas state management |
+| 2026-05-05 05:30 | Fix Math.max(NaN) in drawHUD — added `|| 0` fallback so panelWidth is never NaN when agents are registered but characters haven't spawned yet; also removed stale +50 padding since maxTextWidth already has breathing room | HUD rendering stability |
 
 ## Current Stage
 - Server running at port 7777
