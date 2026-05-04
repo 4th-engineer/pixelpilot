@@ -51,8 +51,8 @@ export class Renderer {
       const info = getCharInfo(id);
       const label = info ? `${info.name} (${id})` : id;
       return ctx.measureText(label).width;
-    }));
-    const panelWidth = Math.max(160, maxTextWidth + 50);
+    })) || 0;  // fallback if all agents lack spawned characters (NaN guard)
+    const panelWidth = Math.max(160, maxTextWidth);
     const panelHeight = 30 + agentEntries.length * 22;
 
     ctx.save();
