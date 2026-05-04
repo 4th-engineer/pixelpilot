@@ -15,13 +15,18 @@ export class ParticleSystem {
   }
 
   _spawn(y = null) {
+    const size = 0.8 + Math.random() * 1.2;
     return {
       x: Math.random() * this.width,
       y: y !== null ? y : Math.random() * this.height,
-      size: 1 + Math.random() * 1.5,
-      speedY: -(0.3 + Math.random() * 0.4), // upward drift
-      alpha: 0.15 + Math.random() * 0.25,
-      phase: Math.random() * Math.PI * 2,    // for oscillation
+      baseY: y !== null ? y : Math.random() * this.height,  // vertical anchor for bobbing
+      size,
+      speedY: -(0.15 + Math.random() * 0.25), // slow upward drift
+      alpha: 0.12 + Math.random() * 0.2,
+      phase: Math.random() * Math.PI * 2,      // for horizontal oscillation
+      bobPhase: Math.random() * Math.PI * 2,   // for vertical bobbing
+      bobSpeed: 0.8 + Math.random() * 0.6,     // individual bob speed
+      bobAmount: 2 + Math.random() * 2,        // vertical bob amplitude (CSS px)
     };
   }
 
@@ -34,10 +39,14 @@ export class ParticleSystem {
     for (const p of this.particles) {
       p.y += p.speedY * deltaTime * 60;
       p.phase += deltaTime * 2;
-      p.x += Math.sin(p.phase) * 0.15; // gentle sine wave sway
+      p.bobPhase += deltaTime * p.bobSpeed;
+      p.x += Math.sin(p.phase) * 0.15; // gentle horizontal sway
+      // Vertical bobbing around the upward drift
+      p.y = p.baseY + Math.sin(p.bobPhase) * p.bobAmount;
+      p.baseY += p.speedY * deltaTime * 60;
 
       // Respawn at bottom when exiting top
-      if (p.y < -5) {
+      if (p.baseY < -5) {
         Object.assign(p, this._spawn(this.height + 5));
       }
     }
