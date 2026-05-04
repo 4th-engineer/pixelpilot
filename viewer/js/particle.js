@@ -20,7 +20,6 @@ export class ParticleSystem {
       y: y !== null ? y : Math.random() * this.height,
       size: 1 + Math.random() * 1.5,
       speedY: -(0.3 + Math.random() * 0.4), // upward drift
-      speedX: (Math.random() - 0.5) * 0.3,  // slight horizontal sway
       alpha: 0.15 + Math.random() * 0.25,
       phase: Math.random() * Math.PI * 2,    // for oscillation
     };
@@ -34,7 +33,6 @@ export class ParticleSystem {
   update(deltaTime) {
     for (const p of this.particles) {
       p.y += p.speedY * deltaTime * 60;
-      p.x += p.speedX * deltaTime * 60;
       p.phase += deltaTime * 2;
       p.x += Math.sin(p.phase) * 0.15; // gentle sine wave sway
 

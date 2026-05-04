@@ -45,11 +45,12 @@
 | 2026-05-04 05:30 | pixelpilot | Prevent SSE reconnect timer stacking on persistent errors — add _sseReconnecting guard so rapid onerror events don't create multiple simultaneous reconnection attempts | Improved SSE reconnection reliability |
 | 2026-05-04 06:30 | pixelpilot | Fix XSS in addChatMessage — agent and timestamp were interpolated via innerHTML (unsanitized), now use textContent via createElement/appendChild | Security fix — prevents XSS from malicious agent names |
 | 2026-05-04 07:30 | pixelpilot | Add missing Viewer.render() delegate method — engine.js calls viewer.render(ctx, width, height) but Viewer class had no render method, so Renderer.render() was never invoked and canvas stayed blank | Critical rendering fix — canvas now actually displays |
+| 2026-05-05 01:30 | pixelpilot | Add `roundRect` polyfill for bubble rendering — uses native `ctx.roundRect` when available, falls back to `arcTo`-based path for older browsers without Canvas 2021 support | Improved browser compatibility |
 | 2026-05-05 00:30 | pixelpilot | Add ambient dust particle system — 15 tiny white dust motes drift upward with gentle sine-wave sway, rendered after floor/map but before characters; adds atmospheric life to the office scene without impacting performance | Visual polish — office now feels alive |
 
 ## Current Stage
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)
