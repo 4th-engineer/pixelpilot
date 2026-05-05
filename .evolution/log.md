@@ -59,6 +59,7 @@
 | 2026-05-06 02:30 | pixelpilot | Remove dead vertical drift code in particle update — `p.y += p.speedY * dt * 60` on line 40 was immediately overwritten by `p.y = p.baseY + sin(bobPhase) * bobAmount` on line 45, making the first assignment dead code; also hoist `const drift = dt * 60` to avoid redundant multiplication | Clean code — removed dead computation |
 | 2026-05-06 03:30 | pixelpilot | Fix system event falling through to spawnCharacter call in handleEvent switch — system events now return early instead of break, preventing spurious character spawns for system messages; also add distinct system CSS style (dark bg + accent border-left) | Bug fix + visual consistency |
 | 2026-05-06 04:30 | pixelpilot | Add outer ctx.save/restore to drawDeskIndicators for full canvas state isolation — ensures fillStyle, globalAlpha, strokeStyle, lineWidth state changes don't leak to subsequent draw calls even if rendering order changes | Canvas state consistency |
+| 2026-05-06 05:30 | pixelpilot | Add drop shadow to speech bubbles — ctx.shadowColor/shadowBlur/shadowOffsetX/Y give bubbles a subtle depth effect against the office scene, shadow cleared before tail is drawn so tail stays sharp | Visual polish — speech bubbles now feel elevated |
 
 ## Current Stage
 - Server running at port 7777
