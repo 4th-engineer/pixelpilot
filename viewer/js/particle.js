@@ -36,14 +36,14 @@ export class ParticleSystem {
   }
 
   update(deltaTime) {
+    const drift = deltaTime * 60;
     for (const p of this.particles) {
-      p.y += p.speedY * deltaTime * 60;
       p.phase += deltaTime * 2;
       p.bobPhase += deltaTime * p.bobSpeed;
       p.x += Math.sin(p.phase) * 0.15; // gentle horizontal sway
-      // Vertical bobbing around the upward drift
+      // Vertical bobbing around upward drift — bob amplitude stays constant in CSS px
       p.y = p.baseY + Math.sin(p.bobPhase) * p.bobAmount;
-      p.baseY += p.speedY * deltaTime * 60;
+      p.baseY += p.speedY * drift;
 
       // Respawn at bottom when exiting top
       if (p.baseY < -5) {
