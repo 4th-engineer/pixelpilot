@@ -106,16 +106,28 @@ export class BubbleManager {
     const x = bubble.x - width / 2;
     const y = bubble.y - height;
 
-    // Background
+    // Background color by type
     let bgColor = '#ffffff';
     if (bubble.type === 'thinking') bgColor = '#fef3c7';
     if (bubble.type === 'tool') bgColor = '#dbeafe';
     if (bubble.type === 'done') bgColor = '#d1fae5';
 
+    // Shadow for depth
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 2;
+
     ctx.fillStyle = bgColor;
     ctx.beginPath();
     this._roundRect(ctx, x, y, width, height, 6);
     ctx.fill();
+
+    // Reset shadow before tail (tail is drawn without shadow)
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
 
     // Tail
     ctx.fillStyle = bgColor;
