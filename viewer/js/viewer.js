@@ -166,6 +166,7 @@ class Viewer {
       this.agents.clear();
       this.characterManager.clear();
       this.bubbleManager.clear();
+      this.eventCount = 0;
       document.getElementById('chat-messages').innerHTML = '';
       this.updateStats();
     } catch (e) {

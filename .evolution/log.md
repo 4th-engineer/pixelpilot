@@ -52,6 +52,7 @@
 | 2026-05-05 04:30 | Isolate bubble text canvas state in renderBubble() — wrap text fillStyle/textAlign/textBaseline in ctx.save/restore to prevent bubble text state from leaking to subsequent draw calls | Consistent canvas state management |
 | 2026-05-05 05:30 | Fix Math.max(NaN) in drawHUD — added `|| 0` fallback so panelWidth is never NaN when agents are registered but characters haven't spawned yet; also removed stale +50 padding since maxTextWidth already has breathing room | HUD rendering stability |
 | 2026-05-05 06:30 | Fix README project structure to list hooks/README.md alongside hooks/pixel_pilot.py | Documentation accuracy |
+| 2026-05-05 07:30 | Add vertical bobbing to ambient dust particles — particles now drift upward with gentle sine-wave bob around their drift path instead of moving in straight lines; slower drift speed and smaller sizes for subtler atmospheric effect | Improved particle realism and office ambiance |
 
 ## Current Stage
 - Server running at port 7777
