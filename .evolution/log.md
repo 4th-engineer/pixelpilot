@@ -52,7 +52,9 @@
 | 2026-05-05 04:30 | Isolate bubble text canvas state in renderBubble() — wrap text fillStyle/textAlign/textBaseline in ctx.save/restore to prevent bubble text state from leaking to subsequent draw calls | Consistent canvas state management |
 | 2026-05-05 05:30 | Fix Math.max(NaN) in drawHUD — added `|| 0` fallback so panelWidth is never NaN when agents are registered but characters haven't spawned yet; also removed stale +50 padding since maxTextWidth already has breathing room | HUD rendering stability |
 | 2026-05-05 06:30 | Fix README project structure to list hooks/README.md alongside hooks/pixel_pilot.py | Documentation accuracy |
-| 2026-05-05 07:30 | Add vertical bobbing to ambient dust particles — particles now drift upward with gentle sine-wave bob around their drift path instead of moving in straight lines; slower drift speed and smaller sizes for subtler atmospheric effect | Improved particle realism and office ambiance |
+| 2026-05-05 07:30 | pixelpilot | Add vertical bobbing to ambient dust particles — particles now drift upward with gentle sine-wave bob around their drift path instead of moving in straight lines; slower drift speed and smaller sizes for subtler atmospheric effect | Improved particle realism and office ambiance |
+| 2026-05-06 00:30 | pixelpilot | Fix eventCount reset on clearHistory() — was not reset when history was cleared, leaving stale count in UI; now resets to 0 | Bug fix — accurate event counter after clear |
+| 2026-05-06 00:30 | pixelpilot | Remove dead DOM bubble code — #bubble-container div from index.html and .bubble CSS block from viewer.css were orphaned (bubbles are canvas-rendered via bubble.js, not DOM) | Clean code — 60 lines dead CSS/HTML removed |
 
 ## Current Stage
 - Server running at port 7777
