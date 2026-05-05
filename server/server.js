@@ -13,6 +13,8 @@ const MIME = {
   '.js': 'application/javascript',
   '.css': 'text/css',
   '.png': 'image/png',
+  '.ico': 'image/x-icon',
+  '.svg': 'image/svg+xml',
   '.json': 'application/json',
 };
 
