@@ -281,6 +281,11 @@ body {
   font-style: italic;
 }
 
+.chat-message.system {
+  background: #1a1a2e;
+  border-left: 3px solid var(--accent);
+}
+
 /* Control Bar */
 #control-bar {
   display: flex;

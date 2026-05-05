@@ -244,7 +244,7 @@ class Viewer {
         
       case 'system':
         this.addChatMessage('system', event.message, 'system', event.timestamp);
-        break;
+        return;
     }
     
     this.updateStats();
