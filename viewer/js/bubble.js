@@ -72,6 +72,8 @@ export class BubbleManager {
   
   // Polyfill roundRect for browsers that don't support it
   _roundRect(ctx, x, y, w, h, r) {
+    // Ensure fresh path state before drawing
+    ctx.beginPath();
     if (ctx.roundRect) {
       ctx.roundRect(x, y, w, h, r);
     } else {
