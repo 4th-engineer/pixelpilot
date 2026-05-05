@@ -96,6 +96,7 @@ export class Renderer {
     const T = map.TILE_SIZE;
     const chars = characterManager.characters;
 
+    ctx.save();
     for (const char of chars.values()) {
       if (!char.desk || char.desk.isBreak) continue;
 
@@ -117,5 +118,6 @@ export class Renderer {
       ctx.stroke();
       ctx.restore();
     }
+    ctx.restore();
   }
 }
