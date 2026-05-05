@@ -58,6 +58,7 @@
 | 2026-05-06 00:30 | pixelpilot | Remove dead DOM bubble code — #bubble-container div from index.html and .bubble CSS block from viewer.css were orphaned (bubbles are canvas-rendered via bubble.js, not DOM) | Clean code — 60 lines dead CSS/HTML removed |
 | 2026-05-06 02:30 | pixelpilot | Remove dead vertical drift code in particle update — `p.y += p.speedY * dt * 60` on line 40 was immediately overwritten by `p.y = p.baseY + sin(bobPhase) * bobAmount` on line 45, making the first assignment dead code; also hoist `const drift = dt * 60` to avoid redundant multiplication | Clean code — removed dead computation |
 | 2026-05-06 03:30 | pixelpilot | Fix system event falling through to spawnCharacter call in handleEvent switch — system events now return early instead of break, preventing spurious character spawns for system messages; also add distinct system CSS style (dark bg + accent border-left) | Bug fix + visual consistency |
+| 2026-05-06 04:30 | pixelpilot | Add outer ctx.save/restore to drawDeskIndicators for full canvas state isolation — ensures fillStyle, globalAlpha, strokeStyle, lineWidth state changes don't leak to subsequent draw calls even if rendering order changes | Canvas state consistency |
 
 ## Current Stage
 - Server running at port 7777
