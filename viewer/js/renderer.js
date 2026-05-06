@@ -36,7 +36,6 @@ export class Renderer {
   drawHUD(ctx) {
     // Agent status in corner — size box to fit content
     const agentEntries = [...this.viewer.agents.entries()];
-    if (agentEntries.length === 0) return;
 
     // Find character info for each agent (color, name)
     const charMap = this.viewer.characterManager?.characters;
@@ -56,6 +55,11 @@ export class Renderer {
     const panelHeight = 30 + agentEntries.length * 22;
 
     ctx.save();
+    if (agentEntries.length === 0) {
+      ctx.restore();
+      return;
+    }
+
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(10, 10, panelWidth, panelHeight);
 
