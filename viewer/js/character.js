@@ -164,9 +164,11 @@ export class Character {
     // Thinking indicator
     if (this.state === 'thinking') {
       ctx.save();
+      // Subtle pulse on the circle (gentle breathing effect)
+      const pulseRadius = 8 + Math.sin(this.workTimer * 4) * 1.5;
       ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
       ctx.beginPath();
-      ctx.arc(x + s - 8, y - 4, 8, 0, Math.PI * 2);
+      ctx.arc(x + s - 8, y - 4, pulseRadius, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#1a1a2e';
       ctx.font = 'bold 10px monospace';
