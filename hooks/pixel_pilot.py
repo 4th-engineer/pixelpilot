@@ -262,9 +262,7 @@ def _patch_tool_router() -> None:
         if original_route_batch:
             @functools.wraps(original_route_batch)
             def patched_route_batch(self, tasks):
-                for task in tasks:
-                    patched_route(self, task)
-                return [patched_route(self, t) for t in tasks]
+                return [patched_route(self, task) for task in tasks]
 
             ToolRouter.route_batch = patched_route_batch
 
