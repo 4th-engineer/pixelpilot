@@ -150,8 +150,8 @@ export class Character {
 
     // Working indicator (hammer)
     if (this.state === 'working') {
-      const hammerAngle = Math.sin(this.workTimer * 10) * 0.5;
       ctx.save();
+      const hammerAngle = Math.sin(this.workTimer * 10) * 0.5;
       ctx.translate(x + s - 4, y + 8);
       ctx.rotate(hammerAngle);
       ctx.fillStyle = '#888';
@@ -159,7 +159,6 @@ export class Character {
       ctx.fillStyle = '#654321';
       ctx.fillRect(-4, -2, 8, 4);
       ctx.restore();
-      ctx.restore(); // close outer save to prevent state leak into name tag
     }
 
     // Thinking indicator
