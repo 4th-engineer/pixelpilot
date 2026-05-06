@@ -159,6 +159,7 @@ export class Character {
       ctx.fillStyle = '#654321';
       ctx.fillRect(-4, -2, 8, 4);
       ctx.restore();
+      ctx.restore(); // close outer save to prevent state leak into name tag
     }
 
     // Thinking indicator
