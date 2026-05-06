@@ -61,11 +61,10 @@
 | 2026-05-06 04:30 | pixelpilot | Add outer ctx.save/restore to drawDeskIndicators for full canvas state isolation — ensures fillStyle, globalAlpha, strokeStyle, lineWidth state changes don't leak to subsequent draw calls even if rendering order changes | Canvas state consistency |
 | 2026-05-06 05:30 | pixelpilot | Add drop shadow to speech bubbles — ctx.shadowColor/shadowBlur/shadowOffsetX/Y give bubbles a subtle depth effect against the office scene, shadow cleared before tail is drawn so tail stays sharp | Visual polish — speech bubbles now feel elevated |
 | 2026-05-06 07:30 | pixelpilot | Add ctx.beginPath() to _roundRect for explicit path isolation before drawing bubble shape — ensures clean path state regardless of browser Canvas implementation | Defensive canvas path consistency |
-| 2026-05-07 00:30 | pixelpilot | Clarify SSE event parse error messages — prefix with 'SSE' to distinguish from other error sources | Improved debuggability |
-|
+| 2026-05-07 01:30 | pixelpilot | Add pulsing animation to thinking indicator — circle gently breathes at 4Hz with ±1.5px radius variation | Visual polish — thinking indicator now feels more alive |
 ## Current Stage
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation
 - Canvas state isolation now complete across all render paths (floor/walls, desks, door, plants, characters, working indicator, thinking indicator, name tag, bubbles)
 - Next: Continue UI polish and bug fixes
 
