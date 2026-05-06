@@ -119,7 +119,7 @@ class Viewer {
         const event = JSON.parse(e.data);
         this.handleEvent(event);
       } catch (err) {
-        console.error('Failed to parse event:', err);
+        console.error('Failed to parse SSE event:', err);
       }
     };
     

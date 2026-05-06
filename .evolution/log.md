@@ -60,6 +60,7 @@
 | 2026-05-06 03:30 | pixelpilot | Fix system event falling through to spawnCharacter call in handleEvent switch — system events now return early instead of break, preventing spurious character spawns for system messages; also add distinct system CSS style (dark bg + accent border-left) | Bug fix + visual consistency |
 | 2026-05-06 04:30 | pixelpilot | Add outer ctx.save/restore to drawDeskIndicators for full canvas state isolation — ensures fillStyle, globalAlpha, strokeStyle, lineWidth state changes don't leak to subsequent draw calls even if rendering order changes | Canvas state consistency |
 | 2026-05-06 05:30 | pixelpilot | Add drop shadow to speech bubbles — ctx.shadowColor/shadowBlur/shadowOffsetX/Y give bubbles a subtle depth effect against the office scene, shadow cleared before tail is drawn so tail stays sharp | Visual polish — speech bubbles now feel elevated |
+| 2026-05-06 07:30 | pixelpilot | Add ctx.beginPath() to _roundRect for explicit path isolation before drawing bubble shape — ensures clean path state regardless of browser Canvas implementation | Defensive canvas path consistency |
 
 ## Current Stage
 - Server running at port 7777
