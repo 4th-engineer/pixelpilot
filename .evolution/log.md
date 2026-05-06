@@ -63,10 +63,12 @@
 | 2026-05-06 07:30 | pixelpilot | Add ctx.beginPath() to _roundRect for explicit path isolation before drawing bubble shape — ensures clean path state regardless of browser Canvas implementation | Defensive canvas path consistency |
 | 2026-05-07 01:30 | pixelpilot | Add pulsing animation to thinking indicator — circle gently breathes at 4Hz with ±1.5px radius variation | Visual polish — thinking indicator now feels more alive |
 | 2026-05-07 02:30 | pixelpilot | Fix canvas state leak in working indicator — render() had only one ctx.restore() in the working path but two ctx.save() calls (outer wraps all character, inner wraps hammer); missing restore let fillStyle/translate/rotate leak into name tag draw | Canvas state isolation fix |
+| 2026-05-07 03:30 | pixelpilot | Add 10MB request body size limit to parseBody — prevents memory exhaustion from unbounded chunk accumulation on malicious or misconfigured clients | Security + robustness fix |
 |## Current Stage
 - Server running at port 7777
 - Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation
 - Canvas state isolation now complete across all render paths (floor/walls, desks, door, plants, characters, working indicator, thinking indicator, name tag, bubbles)
+- Security hardening: SSE reconnection guard, XSS prevention in chat, request body size limit
 - Next: Continue UI polish and bug fixes
 
 ## Priority Areas (update as needed)

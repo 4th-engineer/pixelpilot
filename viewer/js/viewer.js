@@ -105,7 +105,13 @@ class Viewer {
     const statusEl = document.getElementById('connection-status');
     statusEl.textContent = '⚫ Connecting...';
     
+    // Close any previous EventSource to prevent connection leaks on reconnect
+    if (this._events) {
+      this._events.close();
+    }
+    
     const events = new EventSource('/events');
+    this._events = events;
     
     events.onopen = () => {
       this.sseConnected = true;
