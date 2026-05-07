@@ -84,8 +84,11 @@ export class Renderer {
       ctx.arc(20, y - 4, 5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Agent label: name (id)
-      ctx.fillStyle = '#eaeaea';
+      // Agent label: name (id) — color reflects agent status
+      const labelColor = agent.status === 'working' ? '#fbbf24' :
+                         agent.status === 'thinking' ? '#93c5fd' :
+                         '#eaeaea';
+      ctx.fillStyle = labelColor;
       const label = info ? `${info.name} (${id})` : id;
       ctx.fillText(`${status} ${label}`, 32, y);
       y += 22;
