@@ -173,7 +173,7 @@ export class Character {
       ctx.fillStyle = '#1a1a2e';
       ctx.font = 'bold 10px monospace';
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      ctx.textBaseline = 'alphabetic';
       ctx.fillText('?', x + s - 8, y - 4);
       ctx.restore();
     }
