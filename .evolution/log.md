@@ -73,10 +73,11 @@
 | 2026-05-08 03:30 | pixelpilot | Replace legacy `word-break: break-word` with modern `overflow-wrap: break-word` + `word-break: normal` for chat message content — aligns with current CSS spec for long path/URL wrapping | CSS standards compliance, improved text wrapping |
 | 2026-05-08 04:30 | pixelpilot | Fix unclosed `<div id="canvas-container">` in index.html — chat panel `<aside>` was incorrectly nested inside canvas-container, breaking CSS layout (flex child was inside a nested div instead of being a sibling of the container) | HTML structure fix, correct CSS flex layout |
 | 2026-05-08 05:30 | pixelpilot | Fix thinking indicator textBaseline in character.js — use alphabetic instead of middle so text renders are consistent with default canvas state | Consistent canvas text rendering |
+| 2026-05-08 06:30 | pixelpilot | Color HUD agent labels by status — amber (#fbbf24) for working, light blue (#93c5fd) for thinking, white for idle — matching bubble/character visual language | Improved HUD readability — status now color-coded at a glance |
 
 ## Current Stage
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation, SSE EventSource connection leak fix, double ctx.restore() rendering bug fix, Escape key to clear history
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation, SSE EventSource connection leak fix, double ctx.restore() rendering bug fix, Escape key to clear history, HUD label color by status (amber working, blue thinking)
 - Keyboard shortcuts: 'c' toggles chat panel, Escape clears history and closes chat panel
 - Canvas state isolation now complete across all render paths (floor/walls, desks, door, plants, characters, working indicator, thinking indicator, name tag, bubbles)
 - Security hardening: SSE reconnection guard, XSS prevention in chat, request body size limit

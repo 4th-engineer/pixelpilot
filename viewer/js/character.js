@@ -178,14 +178,15 @@ export class Character {
       ctx.restore();
     }
 
-    // Name tag
+    // Name tag — show name and personality type
     ctx.save();
     ctx.font = '9px monospace';
-    const nameWidth = ctx.measureText(this.name).width;
+    const label = this.personality ? `${this.name} (${this.personality})` : this.name;
+    const nameWidth = ctx.measureText(label).width;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.fillRect(x - 2, y - 14, nameWidth + 8, 12);
     ctx.fillStyle = '#fff';
-    ctx.fillText(this.name, x + 2, y - 4);
+    ctx.fillText(label, x + 2, y - 4);
     ctx.restore();
   }
 }
