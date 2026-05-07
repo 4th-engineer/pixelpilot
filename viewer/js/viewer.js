@@ -65,11 +65,15 @@ class Viewer {
       };
     }
     
-    // Keyboard shortcut: 'c' toggles chat panel
+    // Keyboard shortcuts: 'c' toggles chat panel, Escape clears history
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === 'c' || e.key === 'C') {
         chatPanel.classList.toggle('open');
+      }
+      if (e.key === 'Escape') {
+        this.clearHistory();
+        chatPanel.classList.remove('open');
       }
     });
     
