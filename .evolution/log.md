@@ -68,9 +68,11 @@
 | 2026-05-07 04:30 | pixelpilot | Close SSE EventSource before reconnecting to prevent connection leaks — each reconnect now closes the old EventSource via stored reference, preventing abandoned connections from accumulating | SSE connection resource management |
 | 2026-05-07 06:30 | pixelpilot | Fix canvas state leak in drawHUD on empty agent list — early return before ctx.save() left fillStyle/globalAlpha from drawDeskIndicators leaking into subsequent frames; now ctx.save() is called before the early return with matching ctx.restore() | Canvas state isolation fix |
 | 2026-05-07 07:30 | pixelpilot | Fix duplicate events in patched_route_batch — was calling patched_route twice per task (once in for loop, once in list comp), causing double tool events for batch operations | Bug fix — eliminates duplicate events in batch tool calls |
+| 2026-05-08 00:30 | pixelpilot | Add Escape key shortcut to clear history and close chat panel — complements 'c' shortcut, gives users a quick reset option | Keyboard navigation UX improvement |
 |## Current Stage
 - Server running at port 7777
-- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation, SSE EventSource connection leak fix, double ctx.restore() rendering bug fix
+- Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation, SSE EventSource connection leak fix, double ctx.restore() rendering bug fix, Escape key to clear history
+- Keyboard shortcuts: 'c' toggles chat panel, Escape clears history and closes chat panel
 - Canvas state isolation now complete across all render paths (floor/walls, desks, door, plants, characters, working indicator, thinking indicator, name tag, bubbles)
 - Security hardening: SSE reconnection guard, XSS prevention in chat, request body size limit
 - Next: Continue UI polish and bug fixes
