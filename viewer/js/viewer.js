@@ -270,7 +270,7 @@ class Viewer {
     if (eventTimestamp) {
       const elapsed = (Date.now() - eventTimestamp) / 1000;
       if (elapsed < 60) {
-        timeStr = `${elapsed.toFixed(1)}s ago`;
+        timeStr = `${Math.floor(elapsed)}s ago`;
       } else if (elapsed < 3600) {
         timeStr = `${Math.floor(elapsed / 60)}m ago`;
       } else {
