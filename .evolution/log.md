@@ -69,6 +69,7 @@
 | 2026-05-07 06:30 | pixelpilot | Fix canvas state leak in drawHUD on empty agent list — early return before ctx.save() left fillStyle/globalAlpha from drawDeskIndicators leaking into subsequent frames; now ctx.save() is called before the early return with matching ctx.restore() | Canvas state isolation fix |
 | 2026-05-07 07:30 | pixelpilot | Fix duplicate events in patched_route_batch — was calling patched_route twice per task (once in for loop, once in list comp), causing double tool events for batch operations | Bug fix — eliminates duplicate events in batch tool calls |
 | 2026-05-08 00:30 | pixelpilot | Add Escape key shortcut to clear history and close chat panel — complements 'c' shortcut, gives users a quick reset option | Keyboard navigation UX improvement |
+| 2026-05-08 01:30 | pixelpilot | Fix relative timestamp to show whole seconds — 3s ago instead of 3.0s ago (Math.floor instead of toFixed(1)) | Improved chat timestamp readability |
 |## Current Stage
 - Server running at port 7777
 - Recent fixes: Idle breathing animation, mobile chat panel toggle, HiDPI floor grid, HiDPI canvas clear, deltaTime cap, name tag measurement, live server-info refresh, SSE keep-alive ping, agent_type preservation, per-type chat content colors, smart chat auto-scroll, bubble persists while agent is working, ambient dust particles, roundRect polyfill for browser compatibility, thinking indicator pulsing animation, SSE EventSource connection leak fix, double ctx.restore() rendering bug fix, Escape key to clear history

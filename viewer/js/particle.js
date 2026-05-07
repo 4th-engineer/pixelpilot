@@ -55,11 +55,13 @@ export class ParticleSystem {
   render(ctx) {
     ctx.save();
     for (const p of this.particles) {
+      ctx.save();
       ctx.globalAlpha = p.alpha;
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
     }
     ctx.restore();
   }
