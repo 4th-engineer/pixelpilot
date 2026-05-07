@@ -261,7 +261,8 @@ body {
 }
 
 .chat-message .content {
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .chat-message.thinking .content {
