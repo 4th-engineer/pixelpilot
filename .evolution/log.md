@@ -71,6 +71,7 @@
 | 2026-05-08 00:30 | pixelpilot | Add Escape key shortcut to clear history and close chat panel — complements 'c' shortcut, gives users a quick reset option | Keyboard navigation UX improvement |
 | 2026-05-08 01:30 | pixelpilot | Fix relative timestamp to show whole seconds — 3s ago instead of 3.0s ago (Math.floor instead of toFixed(1)) | Improved chat timestamp readability |
 | 2026-05-08 03:30 | pixelpilot | Replace legacy `word-break: break-word` with modern `overflow-wrap: break-word` + `word-break: normal` for chat message content — aligns with current CSS spec for long path/URL wrapping | CSS standards compliance, improved text wrapping |
+| 2026-05-08 04:30 | pixelpilot | Fix unclosed `<div id="canvas-container">` in index.html — chat panel `<aside>` was incorrectly nested inside canvas-container, breaking CSS layout (flex child was inside a nested div instead of being a sibling of the container) | HTML structure fix, correct CSS flex layout |
 
 ## Current Stage
 - Server running at port 7777
